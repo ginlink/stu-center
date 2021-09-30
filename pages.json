@@ -1,0 +1,51 @@
+{
+	"easycom": {
+		"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
+	},
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/console/console",
+			"style": {
+				"navigationBarTitleText": "操作台"
+			}
+		}, {
+			"path": "pages/stu/stu",
+			"style": {
+				"navigationBarTitleText": "学生中心"
+			}
+		},
+		/*************** 公共页 **********************/
+		{
+			"path": "pages/public/pub-edit-vac"
+		},
+		/*************** 公共页 **********************/
+		{
+			"path": "pages/vacation/vacation",
+			"style": {
+				"navigationBarTitleText": "我的假条"
+			}
+		}, {
+			"path": "pages/vacation/children/ApplyVacation",
+			"style": {
+				"navigationBarTitleText": "假条申请"
+			}
+		}, {
+			"path": "pages/vacation/children/VactionDetail",
+			"style": {
+				"navigationBarTitleText": "假条详情"
+			}
+		},{
+			"path": "pages/vacation/children/ReportBack",
+			"style": {
+				"navigationBarTitleText": "销假"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationStyle": "custom",
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#FFFFFF",
+		"backgroundColor": "#F5F5F5"
+	}
+}

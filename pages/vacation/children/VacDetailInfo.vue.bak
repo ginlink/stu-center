@@ -1,0 +1,44 @@
+<template>
+	<view class="wrapper" v-if="VacationDetailInfo" style="padding-top: 10px;">
+		<view class="header" style="display: flex;border-bottom: 1px solid #eee;">
+			<text style="flex: .9;font-weight: 700;">请假详情</text>
+			<text style="flex: 1;color: silver;">
+				申请时间{{VacationDetailInfo.createTime}}
+			</text>
+		</view>
+		<view class="body" style="display: flex;padding: 3px 0" v-for="item in VacationDetailInfo.list" :key="item.text">
+			<view class="left" style="flex: 1;">
+				<view class="">
+					{{item.text}}
+				</view>
+			</view>
+			<view class="left" style="flex: 1.5;">
+				<view class="">
+					{{item.value}}
+				</view>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		props: {
+			VacationDetailInfo: {
+				type: Object,
+				default () {
+					return null
+				}
+			}
+		},
+		data() {
+			return {
+				createTime: '',
+				list: null
+			}
+		}
+	}
+</script>
+
+<style>
+</style>

@@ -1,0 +1,32 @@
+<template>
+	<view class="" style="">
+		<view class="" style="border-bottom: 1px solid #EEE;" v-if="VacationCondition">
+			<text style="color: silver;">
+				审批情况
+			</text>
+		</view>
+		<view class="" style="">
+			<text>{{VacationCondition.conditionMan}}审批</text>
+			<text style="margin-left: 3px;color: silver;">{{VacationCondition.conditionTime}}</text>
+		</view>
+		<view class="" style="color: silver;">
+			审批意见:{{VacationCondition.conditionAgree}}
+		</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		props: {
+			VacationCondition: {
+				type: Object,
+				default () {
+					return null
+				}
+			}
+		}
+	}
+</script>
+
+<style>
+</style>

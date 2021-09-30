@@ -1,0 +1,274 @@
+<template>
+	<view class="console">
+		<view class="navbar">
+			<!-- <u-navbar :is-back="false" title="幸运盒子"> -->
+			<!-- <u-navbar is-back back-icon-name="" title="幸运盒子"> -->
+			<u-navbar :is-back="false" title="" :border-bottom="false">
+				<view class="slot-wrap">
+					<view class="back" @click="$emit('back')">
+						<!-- <image src="@/static/home/box-black.png"></image> -->
+						<!-- <image src="@/static/home/logo200.png"></image> -->
+						<image src="@/static/home/box-colorful.png"></image>
+						<view class="back-text">
+							幸运盒子
+						</view>
+					</view>
+		
+				</view>
+				<!-- #ifndef MP -->
+				<view slot="right">
+					<!-- 右侧菜单功能 -->
+					<view class="home-menu">
+						<wechat-menu class="wechat-menu-wrapper" :popStyle="{'marginBottom':'88rpx'}"></wechat-menu>
+					</view>
+				</view>
+				<!-- #endif -->
+
+			</u-navbar>
+		</view>
+		<!-- <button type="default" @click="stuCenter">学生中心</button> -->
+
+		<view class="u-page">
+			<!-- 所有内容的容器 -->
+			<view v-show="current==0" class="home">
+				<view class="box-wrapper">
+					<view class="box">
+						<view class="box-item" @click="action(1)">
+							<view class="icon">
+								<image src="@/static/home/student.png"></image>
+							</view>
+							<view class="title">
+								学生中心
+							</view>
+						</view>
+						<view class="box-item">
+							<view class="icon">
+								<!-- <image src="@/static/home/logo.png"></image> -->
+								<image src="@/static/home/more3blue.png"></image>
+							</view>
+							<view class="title">
+								更多敬请期待...
+							</view>
+						</view>
+						
+					</view>
+				</view>
+			</view>
+			<view v-show="current==1" class="profile">
+				<view class="icon" @click="showInfo=true">
+					<u-loading :show="showLoadding" size="56"></u-loading>
+					<view v-if="showLoadding" class="text">
+						加载中...
+					</view>
+					<u-empty :show="showEmpty" text="所谓伊人，在水一方" mode="list"></u-empty>
+					<!-- <u-popup v-model="showInfo" mode="center" height="60%"> -->
+					<u-popup v-model="showInfo" mode="center" width="70%" closeable>
+						<view class="wrapper">
+							<view class="about">
+								<view>
+									一位不知名的业余的程序猿感谢您的使用！
+								</view>
+								<view>
+									若发现bug，请邮联hap_hap@163.com
+								</view>
+								<view style="color:red">
+									本程序仅供学习交流使用，忽用于商业用途！
+								</view>
+							</view>
+							
+						</view>
+					</u-popup>
+				</view>
+				
+			</view>
+		</view>
+		<!-- 与包裹页面所有内容的元素u-page同级，且在它的下方 -->
+		<u-tabbar v-model="current" :list="list" @change="change"></u-tabbar>
+
+		<n-toast ref='nToast'></n-toast>
+	</view>
+
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				// 辅助变量
+				showInfo: false,
+				showEmpty: false,
+				showLoadding: true,
+				// 辅助变量
+				
+				list: [{
+						iconPath: "home",
+						selectedIconPath: "home-fill",
+						text: '首页',
+						// count: 2,
+						// isDot: true,
+						customIcon: false,
+					},
+					{
+						iconPath: "account",
+						selectedIconPath: "account-fill",
+						text: '我的',
+						// isDot: true,
+						customIcon: false,
+					},
+				],
+				current: 0
+			}
+		},
+		methods: {
+			action(flag){
+				if(flag == 1){
+					// 学生中心
+					this.$utils.u_tips({
+						loadding: true,
+					},'/pages/stu/stu')
+				}
+			},
+			actionHome(){},
+			actionProfile(){
+				setTimeout(()=>{
+					this.showLoadding = false
+					this.showEmpty = true
+				},3000)
+			},
+			change(index){
+				this.$log(index,'index');
+				
+				if(index==1){
+					// 我的
+					return this.actionProfile()
+				}
+				
+				// 默认首页
+				return this.actionHome()
+			},
+			stuCenter() {
+
+				// this.$toast(this,'111',2)
+				// this.$tips(this,'111')
+				// this.$showLoadding(this,999999)
+				// setTimeout(()=>{
+				// 	this.$hideLoadding(this)
+				// },1500)
+				this.$Router.push({
+					name: 'stuCenter'
+				})
+			}
+		},
+		onLoad(params) {
+			// this.$toast(this, '111', 2)
+		},
+
+	}
+</script>
+
+<style lang="scss" scoped>
+	.console{
+		background-color: $wm-bg-fff;
+		min-height: 100vh;
+		.u-page{
+			.home{
+				.box-wrapper{
+					margin-top: 60rpx;
+					.box{
+						display: flex;
+					}
+					.box-item{
+						flex: 1;
+						display: flex;
+						flex-direction: column;
+						align-items: center;
+						.icon{
+							// width: 160rpx;
+							// height: 160rpx;
+							width: 120rpx;
+							height: 120rpx;
+						}
+						image{
+							width: 100%;
+							height: 100%;
+							border-radius: 50%;
+						}
+						.title{
+							margin-top: 15rpx;
+						}
+					}
+				}
+			}
+			.profile{
+				min-height: 70vh;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				.icon{
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+				}
+				.text{
+					margin-top: 15rpx;
+				}
+				.wrapper{
+					min-height: 100%;
+					padding: 60rpx 30rpx 30rpx;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					.about{
+						
+					}
+				}
+			}
+		}
+		
+		.slot-wrap {
+			width: 100%;
+			display: flex;
+			align-items: center;
+			font-size: 30rpx;
+			padding: 0 15rpx;
+		
+			.back {
+				display: flex;
+				align-items: center;
+				margin-left: 15rpx;
+				image{
+					width: 40rpx;
+					height: 40rpx;
+				}
+			}
+		
+			.back-text {
+				margin-left: 30rpx;
+			}
+		
+			.right {
+				flex: 1;
+				display: flex;
+				align-items: center;
+				justify-content: flex-end;
+				text-align: right;
+				margin-right: 15rpx;
+		
+				.add {
+					color: #007AFF;
+					margin-left: 30rpx;
+				}
+		
+				.is-del {
+					color: #f00;
+				}
+			}
+		}
+		
+		// .home-menu{
+		// 	position: relative;
+		// 	z-index: 999;
+		// }
+		
+	}
+</style>
