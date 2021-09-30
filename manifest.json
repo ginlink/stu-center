@@ -110,7 +110,8 @@
     },
     "h5" : {
         "router" : {
-            "mode" : "hash"
+            "mode" : "hash",
+            "base" : "/stu-center/"
         }
     }
 }
