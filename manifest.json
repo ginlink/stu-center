@@ -112,6 +112,9 @@
         "router" : {
             "mode" : "hash",
             "base" : "/stu-center/"
+        },
+        "devServer" : {
+            "https" : true
         }
     }
 }
