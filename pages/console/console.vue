@@ -41,10 +41,18 @@
 								学生中心
 							</view>
 						</view>
+						<view class="box-item" @click="action(2)">
+							<view class="icon">
+								<image src="@/static/console/application.png"></image>
+							</view>
+							<view class="title">
+								下载
+							</view>
+						</view>
 						<view class="box-item">
 							<view class="icon">
 								<!-- <image src="@/static/home/logo.png"></image> -->
-								<image src="@/static/home/more3blue.png"></image>
+								<image src="@/static/console/more.png"></image>
 							</view>
 							<view class="title">
 								更多敬请期待...
@@ -121,11 +129,19 @@
 		},
 		methods: {
 			action(flag){
-				if(flag == 1){
-					// 学生中心
-					this.$utils.u_tips({
-						loadding: true,
-					},'/pages/stu/stu')
+				switch(flag){
+					case 1:
+						// 学生中心
+						this.$utils.u_tips({
+							loadding: true,
+						},'/pages/stu/stu')
+					break
+					case 2:
+						// 学生中心
+						this.$utils.u_tips({
+							loadding: true,
+						},'/pages/console/download')
+					break
 				}
 			},
 			actionHome(){},
@@ -176,9 +192,13 @@
 					margin-top: 60rpx;
 					.box{
 						display: flex;
+						flex-wrap: wrap;
+						margin: 0 30rpx;
+						gap: 30rpx;
 					}
 					.box-item{
-						flex: 1;
+						/* flex: 1; */
+						width: 47%;
 						display: flex;
 						flex-direction: column;
 						align-items: center;
@@ -191,7 +211,7 @@
 						image{
 							width: 100%;
 							height: 100%;
-							border-radius: 50%;
+							/* border-radius: 50%; */
 						}
 						.title{
 							margin-top: 15rpx;

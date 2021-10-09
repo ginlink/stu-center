@@ -13,6 +13,11 @@
 			"style": {
 				"navigationBarTitleText": "学生中心"
 			}
+		},{
+			"path": "pages/console/download",
+			"style": {
+				"navigationBarTitleText": "下载"
+			}
 		},
 		/*************** 公共页 **********************/
 		{
