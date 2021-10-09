@@ -17,7 +17,9 @@
 		<view v-if="vacation" class="content" :class="{'space': isPassed}">
 			<view class="status" style="background: #fff; padding: 0 15px;">
 				<view class="status-content">
-					<u-icon name="checkmark-circle-fill" :color="statu && statu.color" size="236"></u-icon>
+					<view class="icon" :style="{backgroundColor: statu && statu.color}">
+						<u-icon name="checkbox-mark" :color="'#fff'" size="112"></u-icon>
+					</view>
 					<text style="font-size: 40rpx;font-weight: 800;display: block;">{{statu && statu.title}}</text>
 				</view>
 				<view class="check" style="">
@@ -315,6 +317,16 @@
 			.status-content {
 				text-align: center;
 				margin-top: 80rpx;
+			}
+			.icon{
+				margin: 0 auto;
+				width: 200rpx;
+				height: 200rpx;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background-color: red;
+				border-radius: 50%;
 			}
 		}
 
