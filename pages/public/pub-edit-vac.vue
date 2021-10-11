@@ -79,7 +79,7 @@
 		<u-select v-model="isTypeSelect" mode="single-column" :list="types" @confirm="typeConfirm"></u-select>
 		<u-picker v-model="isStimeSelect" mode="time" :params="params" @confirm="sTimeConfirm"></u-picker>
 		<u-picker v-model="isEtimeSelect" mode="time" :params="params" @confirm="eTimeConfirm"></u-picker>
-		<u-select v-model="isPassSelect" mode="single-column" :list="status" @confirm="statusConfirm"></u-select>
+		<u-select v-model="isPassSelect" mode="single-column" :list="status" @confirm="statusConfirm" default-value="3"></u-select>
 
 		<u-toast ref="uToast" />
 
