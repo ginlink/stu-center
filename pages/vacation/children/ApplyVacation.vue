@@ -2,7 +2,7 @@
 	<!-- 申请假条 -->
 	<view class="apply-vacation">
 		<view class="navbar">
-			<u-navbar back-text="申请假条" title="" :border-bottom="false">
+			<u-navbar back-text="申请假条" :border-bottom="false">
 				<!-- #ifndef MP -->
 				<view slot="right">
 					<!-- 右侧菜单功能 -->
@@ -248,7 +248,7 @@
 				}
 
 				.switch {
-					background-color: #f00;
+					/* background-color: #f00; */
 				}
 			}
 		}

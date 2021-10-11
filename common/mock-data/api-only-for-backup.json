@@ -1,0 +1,56 @@
+{
+  "code": 1,
+  "data": {
+    "list": [
+      {
+        "id": 1,
+        "icon": "/static/img/stuCenter/vacation.svg",
+        "title": "请销假",
+        "url": "/pages/vacation/vacation"
+      },
+      {
+        "id": 2,
+        "icon": "/static/img/stuCenter/write.svg",
+        "title": "健康晨报",
+        "url": "/pages/vacation/vacation"
+      },
+      {
+        "id": 3,
+        "icon": "/static/img/stuCenter/write.svg",
+        "title": "健康日报",
+        "url": "/pages/vacation/vacation"
+      },{
+        "id": 4,
+        "icon": "/static/img/stuCenter/apply.svg",
+        "title": "返校申请",
+        "url": "/pages/vacation/vacation"
+      },{
+        "id": 5,
+        "icon": "/static/img/stuCenter/apply.svg",
+        "title": "离返校登记",
+        "url": "/pages/vacation/vacation"
+      },{
+        "id": 6,
+        "icon": "/static/img/stuCenter/notify.svg",
+        "title": "通知公告",
+        "url": "/pages/vacation/vacation"
+      },{
+        "id": 7,
+        "icon": "/static/img/stuCenter/apply.svg",
+        "title": "课堂缺勤记录",
+        "url": "/pages/vacation/vacation"
+      },{
+        "id": 8,
+        "icon": "/static/img/stuCenter/apply.svg",
+        "title": "课堂评价",
+        "url": "/pages/vacation/vacation"
+      },{
+        "id": 9,
+        "icon": "/static/img/stuCenter/help.svg",
+        "title": "使用帮助",
+        "url": "/pages/vacation/vacation"
+      }
+    ]
+  }
+}
+

@@ -2,7 +2,7 @@
 	<!-- 申请假条 -->
 	<view class="apply-vacation">
 		<view class="navbar">
-			<u-navbar :back-text="title" title="" :border-bottom="false">
+			<u-navbar :back-text="title" :border-bottom="false">
 				<!-- #ifndef MP -->
 				<view slot="right">
 					<!-- 右侧菜单功能 -->
@@ -15,7 +15,7 @@
 
 		<view class="content">
 			<u-form :model="form" ref="uForm">
-				<view v-show="currentIndex==1" class="form-wrapper">
+				<view v-if="currentIndex==1" class="form-wrapper">
 					<u-form-item :label-width="labelWidth" label="请假类型" prop="type">
 						<u-input v-model="form.type" type="select" placeholder="请选择" @click="isTypeSelect=!isTypeSelect" />
 					</u-form-item>
@@ -39,7 +39,7 @@
 					</u-form-item>
 				</view>
 
-				<view v-show="currentIndex==2" class="form-wrapper">
+				<view v-if="currentIndex==2" class="form-wrapper">
 					<view class="page2">
 						<u-form-item :label-width="labelWidth" label="审核人(辅导员)" prop="checkName">
 							<u-input v-model="form.checkName" type="text" placeholder="请输入审核人" />
@@ -79,7 +79,7 @@
 		<u-select v-model="isTypeSelect" mode="single-column" :list="types" @confirm="typeConfirm"></u-select>
 		<u-picker v-model="isStimeSelect" mode="time" :params="params" @confirm="sTimeConfirm"></u-picker>
 		<u-picker v-model="isEtimeSelect" mode="time" :params="params" @confirm="eTimeConfirm"></u-picker>
-		<u-select v-model="isPassSelect" mode="single-column" :list="status" @confirm="statusConfirm"></u-select>
+		<u-select v-model="isPassSelect" mode="single-column" :list="status" @confirm="statusConfirm" default-value="3"></u-select>
 
 		<u-toast ref="uToast" />
 
@@ -683,16 +683,20 @@
 				background-color: $wm-bg-fff;
 
 				.switch {
-					background-color: #f00;
+					/* background-color: #f00; */
 				}
 			}
 
 			.btn {
-				font-size: 28rpx;
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				font-size: 30rpx;
+				height: 80rpx;
+				line-height: 80rpx;
 				color: $wm-bg-fff;
 				background-color: $theme-color;
-				// margin-top: 30rpx;
-				margin-top: 60rpx;
 			}
 
 			.pagenation {

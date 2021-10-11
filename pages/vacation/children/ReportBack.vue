@@ -1,10 +1,31 @@
 <template>
-	<view class="">
+	<view class="report-back">
 		<view class="navbar">
-			<u-navbar back-text="销假" title="" :border-bottom="false"></u-navbar>
+			<u-navbar back-text="销假" :border-bottom="false"></u-navbar>
 		</view>
 
-		<view class="" style="background: #fff;padding: 0 10px;">
+		<view class="remove-vac">
+			<view class="way" @click.native="itemClick(1)">
+				<view class="title">销假方式</view>
+				<view class="content">{{location}}</view>
+				<view class="icon">
+					<uni-icons type="arrowright" size="17"></uni-icons>
+				</view>
+			</view>
+			<view class="notice">
+				<view class="title">销假注意事项</view>
+				<view class="content">在规定区域定位打卡销假</view>
+			</view>
+			<view class="request">
+				打卡要求：请在校园内定位销假
+			</view>
+			<view class="location">
+				<view class="title">当前位置</view>
+				<view class="content" :class="{'content-active': locationActived}">{{ locationContent }}</view>
+			</view>
+		</view>
+
+		<!-- <view class="" style="background: #fff;padding: 0 10px;">
 			<flex2 v-if="item" :leftStyle="item && item.lStyle" :rightStyle="item && item.rStyle" :totalStyle="item && item.tStyle"
 			 v-for="(item,index) in reportBackData" @click.native="itemClick(item.id)">
 				<template v-slot:left>
@@ -15,10 +36,10 @@
 					<uni-icons v-if="item && item.icon &&  item.icon.is" :type="item.icon.type" :size="item.icon.size"></uni-icons>
 				</template>
 			</flex2>
-		</view>
+		</view> -->
 
 		<!-- 销假 -->
-		<button class="sure-btn" style="" :disabled="sureDisabled" @click="sureReportBack">确认销假</button>
+		<button class="sure-btn" :class="{'sure-btn-active':isValid}" :disabled="!isValid" @click="sureReportBack">确认销假</button>
 		<uni-popup ref="popup" type="message">
 			<uni-popup-message type="success" :message="reportSureMessage" :duration="2000"></uni-popup-message>
 		</uni-popup>
@@ -53,11 +74,18 @@
 				data[data.length - 1].rStyle.color = '#00cc00'
 				data[data.length - 1].right = this.positionStatus.ed
 				this.sureDisabled = false
+
+				this.locationActived = true
+				this.locationContent = '已获取'
+				this.location = '西北校区定位销假'
 			}, 1500)
 		},
 
 		data() {
 			return {
+				location: '请选择销假地点',
+				locationContent: '正在获取中...',
+				locationActived: false,
 				currentId: -1,
 				vacationDetail: null,
 
@@ -141,8 +169,15 @@
 				}, ]
 			}
 		},
+		computed: {
+			isValid(){
+				return this.location != '请选择销假地点' && this.locationActived
+			}
+		},
 		methods: {
 			sureReportBack() {
+				console.log('[](销假):', )
+
 				// [服务器] 更新假条状态
 				if (!this.vacationDetail) return this.errorBack('程序出错')
 				if (this.currentId == -1 || !this.currentId) return this.errorBack('程序出错')
@@ -178,12 +213,15 @@
 				console.log('params:', params);
 				this.position = params[0] && params[0].label
 				this.reportBackData[0].right = this.position
+
+				this.location = params[0] && params[0].label
 			}
 		}
 	}
 </script>
 
 <style lang="scss" scoped>
+.report-back{
 	.active {
 		background: #00ff00;
 	}
@@ -193,8 +231,72 @@
 		bottom: 0;
 		left: 0;
 		right: 0;
-		background-color: $theme-color;
-		font-size: 28rpx;
+		background-color: $wm-tx5-color;
+		font-size: 30rpx;
 		color: $wm-bg-fff;
+		height: 80rpx;
+		line-height: 80rpx;
 	}
+	.sure-btn-active{
+		background-color: $theme-color;
+	}
+	uni-view{
+		font-size: 30rpx;
+	}
+	view{
+		font-size: 30rpx;
+	}
+
+	.remove-vac{
+		background-color: #fff;
+		padding: 0 30rpx;
+		display: flex;
+		flex-direction: column;
+		/* gap: 15rpx; */
+		justify-content: center;
+		font-size: 30rpx;
+		.way{
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			padding: 15rpx 0;
+			.title{
+				flex: 1;
+			}
+			.content{
+				color: $wm-tx5-color;
+				margin-right: 15rpx;
+			}
+		}
+		.notice{
+			/* padding: 15rpx 0; */
+			.content{
+				font-size: 26rpx;
+				margin-top: 15rpx;
+			}
+		}
+		.request{
+			border-top: 1px solid #f5f5f5;
+			margin-top: 7rpx;
+			padding: 12rpx 0;
+		}
+		.location{
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			border-top: 1px solid #f5f5f5;
+			margin-top: 7rpx;
+			padding: 12rpx 0;
+			.title{
+				color: $wm-tx5-color;
+			}
+			.content{
+				color: red;
+			}
+			.content-active{
+				color: green;
+			}
+		}
+	}
+}
 </style>

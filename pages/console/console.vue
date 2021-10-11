@@ -3,14 +3,14 @@
 		<view class="navbar">
 			<!-- <u-navbar :is-back="false" title="幸运盒子"> -->
 			<!-- <u-navbar is-back back-icon-name="" title="幸运盒子"> -->
-			<u-navbar :is-back="false" title="" :border-bottom="false">
+			<u-navbar :is-back="false" :border-bottom="false">
 				<view class="slot-wrap">
 					<view class="back" @click="$emit('back')">
 						<!-- <image src="@/static/home/box-black.png"></image> -->
 						<!-- <image src="@/static/home/logo200.png"></image> -->
 						<image src="@/static/home/box-colorful.png"></image>
 						<view class="back-text">
-							幸运盒子
+							口袋模拟假条
 						</view>
 					</view>
 		
@@ -30,10 +30,28 @@
 
 		<view class="u-page">
 			<!-- 所有内容的容器 -->
-			<view v-show="current==0" class="home">
+			<view v-if="current==0" class="home">
 				<view class="box-wrapper">
 					<view class="box">
-						<view class="box-item" @click="action(1)">
+						<view class="box-item" v-for="item in applications" @click="action(item.id)" :key="item.id">
+							<view class="icon">
+								<image :src="item.icon"></image>
+							</view>
+							<view class="title">
+								{{item.name}}
+							</view>
+						</view>
+						<view class="box-item">
+							<view class="icon">
+								<image src="@/static/console/more.png"></image>
+							</view>
+							<view class="title">
+								更多敬请期待...
+							</view>
+						</view>
+
+						<!-- <view class="box-item" @click="action(1)">
+						
 							<view class="icon">
 								<image src="@/static/home/student.png"></image>
 							</view>
@@ -51,18 +69,17 @@
 						</view>
 						<view class="box-item">
 							<view class="icon">
-								<!-- <image src="@/static/home/logo.png"></image> -->
 								<image src="@/static/console/more.png"></image>
 							</view>
 							<view class="title">
 								更多敬请期待...
 							</view>
-						</view>
+						</view> -->
 						
 					</view>
 				</view>
 			</view>
-			<view v-show="current==1" class="profile">
+			<view v-if="current==1" class="profile">
 				<view class="icon" @click="showInfo=true">
 					<u-loading :show="showLoadding" size="56"></u-loading>
 					<view v-if="showLoadding" class="text">
@@ -91,7 +108,7 @@
 			</view>
 		</view>
 		<!-- 与包裹页面所有内容的元素u-page同级，且在它的下方 -->
-		<u-tabbar v-model="current" :list="list" @change="change"></u-tabbar>
+		<!-- <u-tabbar v-model="current" :list="list" @change="change"></u-tabbar> -->
 
 		<n-toast ref='nToast'></n-toast>
 	</view>
@@ -99,6 +116,10 @@
 </template>
 
 <script>
+	import mockIcon from '@/static/home/student.png'
+	import applicationIcon from '@/static/console/application.png'
+	import moreIcon from '@/static/console/more.png'
+	
 	export default {
 		data() {
 			return {
@@ -124,7 +145,9 @@
 						customIcon: false,
 					},
 				],
-				current: 0
+				current: 0,
+				applications: [],
+				appNum: 1,
 			}
 		},
 		methods: {
@@ -178,6 +201,25 @@
 		onLoad(params) {
 			// this.$toast(this, '111', 2)
 		},
+		created(){
+			console.log('applicationIcon', applicationIcon)
+			const applications = [
+				{id: 1, name: '模拟请假', icon: mockIcon},
+				{id: 2, name: '下载', icon: applicationIcon},
+			]
+
+			this.$http.get('/api/appNum').then(res => {
+				const data = res.data.data ?? {}
+				const appNum = data.app_num ?? ''
+
+				if(appNum){
+					this.applications = applications.slice(0, appNum)
+				}
+			}).catch(err => {
+				console.log('err:func(applications)(created)', err)
+			})
+
+		}
 
 	}
 </script>

@@ -4,6 +4,7 @@
 			<view class="flex-item" style="flex:.5; display: flex;align-items: center;" @click="action(1)">
 				<image style="width: 50px;height: 50px;border-radius: 50%; margin: 0 auto;" :src="item.icon" />
 			</view>
+			
 			<view class="flex-item" style="flex:1" @click="action(2)">
 				<view class="info-base" style="flex:1;">
 					<span style="font-size: 38rpx;font-weight: 700;">{{item.name}}</span>
@@ -12,7 +13,7 @@
 				<view style="flex: 1;">{{item.grade}}</view>
 			</view>
 			<view class="flex-item" style="line-height: 60px;flex:.5;">
-				<uni-icons type="arrowright" size="17" style="position: absolute;right: 20px;"></uni-icons>
+				<uni-icons type="arrowright" size="17" style="position: absolute;right: 20px;"  @click="action(2)"></uni-icons>
 			</view>
 		</view>
 

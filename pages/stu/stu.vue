@@ -199,6 +199,5 @@
 		.my-menu{
 			margin-top: 20rpx;
 		}
-		
 	}
 </style>
