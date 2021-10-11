@@ -194,7 +194,8 @@
 		left: 0;
 		right: 0;
 		background-color: $theme-color;
-		font-size: 28rpx;
+		font-size: 30rpx;
 		color: $wm-bg-fff;
+		height: 80rpx;
 	}
 </style>
