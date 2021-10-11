@@ -1,7 +1,7 @@
 <template>
 	<view class="vacation">
 		<view class="navbar">
-			<u-navbar back-text="我的请假" title="" :border-bottom="false">
+			<u-navbar back-text="我的请假" :border-bottom="false">
 				<!-- #ifndef MP -->
 				<view slot="right">
 					<!-- 右侧菜单功能 -->
@@ -466,11 +466,14 @@
 				position: fixed;
 				bottom: 0;
 				width: 100%;
+				height: 80rpx;
 
 				button {
 					width: 100%;
 					background: $theme-color;
 					color: $wm-bg-fff;
+					font-size: 30rpx;
+					line-height: 80rpx;
 				}
 			}
 		}

@@ -2,7 +2,7 @@
 	<view v-if="vacation" class="vacation-detail" :class="{'vacation-detail-passed':isPassed}">
 
 		<view class="navbar">
-			<u-navbar back-text="请假详情" title="" :border-bottom="false">
+			<u-navbar back-text="请假详情" :border-bottom="false">
 				<!-- #ifndef MP -->
 				<view slot="right">
 					<!-- 右侧菜单功能 -->
@@ -49,7 +49,7 @@
 								</view>
 							</view>
 							<view style="flex: 2;margin-left: 20rpx;">
-								<view v-if="" class="">
+								<view>
 									{{item.value}}
 									<view v-if="index=='endTime' && showDayDiff" class="badge">
 										{{showDayDiff}}
@@ -106,6 +106,8 @@
 		},
 		computed: {
 			showDayDiff() {
+				if(!this.vacation) return
+
 				let start = this.$dayjs(this.vacation.detail.startTime, FORMATSECOND)
 				let end = this.$dayjs(this.vacation.detail.endTime, FORMATSECOND)
 
@@ -119,6 +121,8 @@
 				return dayDiff + '天'
 			},
 			isPassed() {
+				if(!this.vacation) return
+
 				return this.vacation.detail.status == 3
 			},
 			CpuAdvise() {
@@ -263,11 +267,13 @@
 
 				if (!this.vacation) return
 
+				console.log('[](this.vacation):', this.vacation)
+
 				// this.vacationDetialList.applyTime.value = this.vacation.detail.applyTime
 				this.vacationDetialList.endTime.value = this.vacation.detail.endTime
 				this.vacationDetialList.isLeaveSchool.value = this.vacation.detail.isLeaveSchool == 0 ? '否' : '是'
 				this.vacationDetialList.isTellParent.value = this.vacation.detail.isTellParent == 0 ? '否' : '是'
-				this.vacationDetialList.other.value = this.vacation.detail.other
+				this.vacationDetialList.other.value = this.vacation.detail?.other ?? ''
 				this.vacationDetialList.reason.value = this.vacation.detail.reason
 				this.vacationDetialList.startTime.value = this.vacation.detail.startTime
 				this.vacationDetialList.type.value = this.vacation.detail.type

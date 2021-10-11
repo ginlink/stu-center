@@ -63,7 +63,7 @@
 		background-color: $wm-bg-fff;
 
 		.switch {
-			background-color: #f00;
+			/* background-color: #f00; */
 		}
 
 		.btn {
@@ -87,6 +87,9 @@
 	/* #ifdef APP-PLUS */
 	page {
 		background-color: #F8F8F8;
+	}
+	view{
+		font-size: 30rpx;
 	}
 
 	/* #endif */

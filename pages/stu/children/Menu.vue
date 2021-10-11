@@ -1,8 +1,24 @@
+<!--
+ * @Author: jiangjin
+ * @Date: 2021-09-30 16:55:30
+ * @LastEditTime: 2021-10-12 00:22:50
+ * @LastEditors: jiangjin
+ * @Description: 
+ * 
+-->
 <template>
-	<view v-if="Object.keys(myMenu).length>0" class='menu'>
-		<view class="item" v-for="menu in myMenu" :key="menu.id">
+	<view v-if="Object.keys(myMenu).length>0" class='stu-menu'>
+		<view class="menu-item" v-for="menu in myMenu" :key="menu.id" @click="navClick(menu)">
+			<view class="icon"><image :src="menu.icon" mode="" style="height: 20px;width: 20px;"></image></view>
 
-			<navbar class="item-navbar" :lay_left="{width:'50px',margin:'auto',display:'flex',alignItems:'center'}" :lay_center="{margin:'auto'}"
+			<view class="title">
+				{{menu.title}}
+			</view>
+			<view class="content">
+				<uni-icons type="arrowright" size="17"></uni-icons>
+			</view>
+
+			<!-- <navbar class="item-navbar" :lay_left="{width:'50px',margin:'auto',display:'flex',alignItems:'center'}" :lay_center="{margin:'auto'}"
 			 @click.native="navClick(menu)">
 				<template v-slot:leftnav>
 					<view class="" style="margin: 0 auto; display: flex;">
@@ -17,7 +33,7 @@
 				<template v-slot:rightnav>
 					<uni-icons type="arrowright" size="17"></uni-icons>
 				</template>
-			</navbar>
+			</navbar> -->
 		</view>
 
 		<n-toast ref='nToast'></n-toast>
@@ -58,7 +74,13 @@
 				// [服务器] 更新菜单信息
 				this.$http.get('/api/vac/centermenu').then(res => {
 					uni.hideLoading()
-					if (res.data.code == 1) this.myMenu = res.data.data.list
+					const data = res.data.data
+					const menuNum = data.menu_num
+					const list = data.list
+
+					this.myMenu = list && list.slice(0, menuNum ?? 0)
+
+					// if (res.data.code == 1) this.myMenu = res.data.data.list
 				}).catch(err => {
 					console.log('err:func(Menu)(created)', err)
 				})
@@ -80,11 +102,33 @@
 	};
 </script>
 <style lang="scss" scoped>
-	.menu {
-		.item {
+	.stu-menu {
+		width: 100%;
+		font-size: 30rpx;
+		background-color: #fff;
+		/* .item {
 			border-bottom: 1px solid #F5F5F5;
 			background-color: $wm-bg-fff;
 			.item-navbar{
+			}
+		} */
+		.menu-item{
+			/* width: 100%; */
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			margin: 0 30rpx;
+			padding: 15rpx 0;
+			border-bottom: 1px solid #f5f5f5;
+
+			.icon{
+				width: 40rpx;
+				height: 40rpx;
+			}
+			.title{
+				flex: 1;
+				margin-left: 30rpx;
+				font-size: 30rpx;
 			}
 		}
 	}

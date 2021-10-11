@@ -1,7 +1,7 @@
 <!--
  * @Author: jiangjin
  * @Date: 2021-10-09 15:09:00
- * @LastEditTime: 2021-10-09 15:39:40
+ * @LastEditTime: 2021-10-12 00:18:03
  * @LastEditors: jiangjin
  * @Description: 
  * 
@@ -83,9 +83,9 @@
           display: flex;
           justify-content: center;
           margin-top: 15rpx;
-          img{
-            width: 200rpx;
-            height: 200rpx;
+          image{
+            width: 240rpx;
+            height: 240rpx;
           }
         }
       }

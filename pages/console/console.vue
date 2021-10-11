@@ -3,14 +3,14 @@
 		<view class="navbar">
 			<!-- <u-navbar :is-back="false" title="幸运盒子"> -->
 			<!-- <u-navbar is-back back-icon-name="" title="幸运盒子"> -->
-			<u-navbar :is-back="false" title="" :border-bottom="false">
+			<u-navbar :is-back="false" :border-bottom="false">
 				<view class="slot-wrap">
 					<view class="back" @click="$emit('back')">
 						<!-- <image src="@/static/home/box-black.png"></image> -->
 						<!-- <image src="@/static/home/logo200.png"></image> -->
 						<image src="@/static/home/box-colorful.png"></image>
 						<view class="back-text">
-							幸运盒子
+							口袋模拟假条
 						</view>
 					</view>
 		
@@ -30,7 +30,7 @@
 
 		<view class="u-page">
 			<!-- 所有内容的容器 -->
-			<view v-show="current==0" class="home">
+			<view v-if="current==0" class="home">
 				<view class="box-wrapper">
 					<view class="box">
 						<view class="box-item" v-for="item in applications" @click="action(item.id)" :key="item.id">
@@ -79,7 +79,7 @@
 					</view>
 				</view>
 			</view>
-			<view v-show="current==1" class="profile">
+			<view v-if="current==1" class="profile">
 				<view class="icon" @click="showInfo=true">
 					<u-loading :show="showLoadding" size="56"></u-loading>
 					<view v-if="showLoadding" class="text">
@@ -213,7 +213,7 @@
 				const appNum = data.app_num ?? ''
 
 				if(appNum){
-					this.applications = applications.slice(0, this.appNum)
+					this.applications = applications.slice(0, appNum)
 				}
 			}).catch(err => {
 				console.log('err:func(applications)(created)', err)
