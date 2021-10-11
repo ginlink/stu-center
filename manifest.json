@@ -1,7 +1,7 @@
 {
-    "name" : "幸运盒子",
+    "name" : "口袋模拟假条",
     "appid" : "__UNI__0530711",
-    "description" : "一款仿南工学工系统的练习项目",
+    "description" : "口袋模拟请假是一款学生休闲娱乐工具，模拟校园申请假条、销假，打卡，重返校园生活。",
     "versionName" : "1.0.0",
     "versionCode" : "100",
     "transformPx" : false,
@@ -90,11 +90,12 @@
     "quickapp" : {},
     /* 小程序特有相关 */
     "mp-weixin" : {
-        "appid" : "",
+        "appid" : "wxc83d421c70a385f4",
         "setting" : {
             "urlCheck" : false
         },
-        "usingComponents" : true
+        "usingComponents" : true,
+        "permission" : {}
     },
     "mp-alipay" : {
         "usingComponents" : true
