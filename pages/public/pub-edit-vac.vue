@@ -336,7 +336,7 @@ export default {
 
           // 初始化form
           let maxId = this.vacationDetail.maxId
-          let tmp = _.cloneDeep(this.vacationDetail.data.clone)
+          let tmp = this.$u.deepClone(this.vacationDetail.data.clone)
           tmp.id = ++maxId
           this.vacation = tmp
           this.freshForm(this.vacation)
@@ -465,18 +465,27 @@ export default {
         return id == item.id
       })
     },
-    sortVacList(vacation) {
+    sortVacList(vacations) {
       // 根据时间排序
       // 开始时间
-      vacation = this._.orderBy(
-        vacation,
-        (o) => {
-          let stand = this.$dayjs(o.detail.startTime, FORMATSECOND).unix()
-          return stand
-        },
-        'desc'
-      )
-      return vacation
+
+      vacations.sort((a, b) => {
+        let aTime = this.$dayjs(a.detail.startTime, FORMATSECOND).unix()
+        let bTime = this.$dayjs(b.detail.startTime, FORMATSECOND).unix()
+
+        return bTime - aTime
+      })
+
+      // vacation = this._.orderBy(
+      //   vacation,
+      //   (o) => {
+      //     let stand = this.$dayjs(o.detail.startTime, FORMATSECOND).unix()
+      //     return stand
+      //   },
+      //   'desc'
+      // )
+
+      return vacations
     },
 
     save() {

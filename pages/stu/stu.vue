@@ -158,7 +158,7 @@ export default {
       this.$api.save(STUINFO, this.form)
       this.isChangePop = false
 
-      this.stuInfo = this._.cloneDeep(this.form)
+      this.stuInfo = this.$u.deepClone(this.form)
     },
 
     // 子组件
@@ -193,12 +193,12 @@ export default {
       let tmp = this.$api.get(STUINFO)
       if (tmp) {
         this.stuInfo = tmp
-        this.form = this._.cloneDeep(tmp)
+        this.form = this.$u.deepClone(tmp)
         return
       }
 
       this.stuInfo = StuInfoData
-      this.form = this._.cloneDeep(StuInfoData)
+      this.form = this.$u.deepClone(StuInfoData)
     },
     customBack() {
       this.$utils.u_tips(
