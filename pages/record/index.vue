@@ -1,7 +1,7 @@
 <!--
  * @Author: jiangjin
  * @Date: 2021-09-30 16:55:30
- * @LastEditTime: 2021-10-13 19:59:19
+ * @LastEditTime: 2021-10-13 20:41:30
  * @LastEditors: jiangjin
  * @Description: 
  * 
@@ -11,7 +11,6 @@
     <u-navbar
       title="更新日志"
       :border-bottom="false"
-      :backIconName="backIconName"
       backIconSize="56"
       titleColor="#303133"
       titleBold
@@ -46,19 +45,26 @@
           </template>
         </u-time-line-item>
       </u-time-line>
+
+      <view class="contract-me">
+        <view>注意：此程序为娱乐小程序，仅供消遣和学习使用，请忽用于商业用途！</view>
+        <view>如遇到问题，请邮联：hap_hap@163.com</view>
+      </view>
     </view>
   </view>
 </template>
 
 <script>
 import { VERSION_NODES } from '@/common/misc.js'
-const reversedNodes = VERSION_NODES.reverse()
+VERSION_NODES.reverse()
+
+// console.log('[]:', VERSION_NODES, reversedNodes)
 
 export default {
   components: {},
   data() {
     return {
-      nodes: reversedNodes,
+      nodes: VERSION_NODES,
     }
   },
   created() {},
@@ -68,7 +74,7 @@ export default {
 <style lang="scss" scoped>
 .record {
   .content {
-    padding: 60rpx 60rpx 0;
+    padding: 30rpx 60rpx 0;
     background-color: #fff;
 
     .u-node {
