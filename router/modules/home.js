@@ -1,7 +1,7 @@
 /*
  * @Author: jiangjin
  * @Date: 2021-09-30 16:55:30
- * @LastEditTime: 2021-10-09 15:10:57
+ * @LastEditTime: 2021-10-13 17:57:29
  * @LastEditors: jiangjin
  * @Description: 
  * 
@@ -33,6 +33,18 @@ const home = [{
 	name: 'vacation',
 	meta: {
 		title: '列表',
+	},
+}, {
+	path: '/pages/setting/index',
+	name: 'setting',
+	meta: {
+		title: '设置',
+	},
+}, {
+	path: '/pages/record/index',
+	name: 'record',
+	meta: {
+		title: '更新日志',
 	},
 }
 ]
