@@ -125,6 +125,7 @@
 import mockIcon from '@/static/home/student.png'
 import applicationIcon from '@/static/console/application.png'
 import moreIcon from '@/static/console/more.png'
+import { START_PAGE } from '@/common/misc.js'
 
 export default {
   data() {
@@ -229,9 +230,30 @@ export default {
         name: 'stuCenter',
       })
     },
-  },
-  onLoad(params) {
-    // this.$toast(this, '111', 2)
+    initPage() {
+      const startPage = uni.getStorageSync(START_PAGE) ?? ''
+      const isLoadStartPage = this.$store.state.isLoadStartPage
+      if (!isLoadStartPage) {
+        uni.showLoading({
+          title: '加载中',
+        })
+      }
+
+      console.log('[](isLoadStartPage):', startPage, isLoadStartPage)
+      if (startPage && !isLoadStartPage) {
+        this.$utils.u_tips(
+          {
+            loadding: false,
+          },
+          startPage
+        )
+
+        setTimeout(() => {
+          this.$store.commit('updateIsLoadStartPage', true)
+          uni.hideLoading()
+        }, 500)
+      }
+    },
   },
   created() {
     console.log('applicationIcon', applicationIcon)
@@ -253,6 +275,9 @@ export default {
       .catch((err) => {
         console.log('err:func(applications)(created)', err)
       })
+  },
+  mounted() {
+    // this.initPage()
   },
 }
 </script>

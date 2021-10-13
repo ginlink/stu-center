@@ -12,9 +12,6 @@ export default {
     console.log('App Launch')
 
     this.initData() // 初始化全局信息
-
-    // 根据设置跳转页面
-    this.initPage()
   },
   onShow: function () {
     console.log('App Show')
@@ -48,18 +45,6 @@ export default {
       // 	uni.setStorageSync(CENTERMENU, centerMenu)
       // }
       // console.log('[APP]vacDetail:', vacDetail);
-    },
-    initPage() {
-      const startPage = uni.getStorageSync(START_PAGE) ?? ''
-
-      if (startPage) {
-        this.$utils.u_tips(
-          {
-            loadding: true,
-          },
-          startPage
-        )
-      }
     },
   },
 }

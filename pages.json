@@ -4,6 +4,12 @@
   },
   "pages": [
     {
+      "path": "pages/index",
+      "style": {
+        "navigationBarTitleText": "入口"
+      }
+    },
+    {
       "path": "pages/console/console",
       "style": {
         "navigationBarTitleText": "操作台"

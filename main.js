@@ -8,18 +8,18 @@ import Toast from './common/transfer/toast'
 import {
 	http
 } from '@/common/service/service.js'
-
+import { store } from '@/store/index.js'
 
 App.mpType = 'app'
-
-import Vuex from 'vuex' // 引入状态管理树
-Vue.use(Vuex)
 
 import uView from "uview-ui";
 Vue.use(uView);
 
 // request请求
 Vue.prototype.$http = http
+
+// store
+Vue.prototype.$store = store
 
 // 引入工具类
 import nh_utils from '@/common/utils/nh_utils.js'
