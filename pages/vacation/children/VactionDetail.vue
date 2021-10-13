@@ -3,7 +3,7 @@
 
 		<view class="navbar">
 			<!-- <u-navbar back-text="请假详情" :border-bottom="false"> -->
-			<u-navbar title="请假详情" :border-bottom="false">
+			<u-navbar title="请假详情" :border-bottom="false" titleColor="#303133" titleBold>
 				<!-- #ifndef MP -->
 				<view slot="right">
 					<!-- 右侧菜单功能 -->
@@ -24,7 +24,7 @@
 					<text style="font-size: 40rpx;font-weight: 800;display: block;">{{statu && statu.title}}</text>
 				</view>
 				<view class="check" style="">
-					<view class="" style="border-bottom: 1px solid #EEE; padding-bottom: 15rpx;">
+					<view class="" style="border-bottom: 1px solid #EEE; padding-bottom: 15rpx; font-weight: 500; font-size: 32rpx;">
 						审批情况
 					</view>
 					<view class="" style="margin-top: 30rpx;">
@@ -37,7 +37,7 @@
 				</view>
 				<view style="margin-top: 50rpx;">
 					<view style="display: flex;padding-bottom: 15rpx; border-bottom: 1px solid #eee;">
-						<text style="flex: 1;font-weight: 700; font-size: 32rpx;">请假详情</text>
+						<text style="flex: 1;font-weight: 500; font-size: 32rpx;">请假详情</text>
 						<text style="flex: 2;color: silver;text-align: right;">
 							申请时间{{vacation.detail.applyTime}}
 						</text>
@@ -49,7 +49,8 @@
 									{{item.text}}
 								</view>
 							</view>
-							<view style="flex: 2;margin-left: 20rpx;">
+							<!-- <view style="flex: 2;margin-left: 20rpx;"> -->
+							<view style="flex: 2;">
 								<view>
 									{{item.value}}
 									<view v-if="index=='endTime' && showDayDiff" class="badge">
@@ -135,10 +136,10 @@
 						return '未通过'
 						break
 					case 2:
-						return '已完成'
+						return '同意'
 						break
 					case 3:
-						return '通过'
+						return '同意'
 						break
 				}
 			},
@@ -369,14 +370,14 @@
 
 			.text {
 				// 文本两端对齐
-				text-align: justify;
-				text-justify: distribute-all-lines;
+				/* text-align: justify; */
+				/* text-justify: distribute-all-lines; */
 				/*ie6-8*/
-				text-align-last: justify;
+				/* text-align-last: justify; */
 				/* ie9*/
-				-moz-text-align-last: justify;
+				/* -moz-text-align-last: justify; */
 				/*ff*/
-				-webkit-text-align-last: justify;
+				/* -webkit-text-align-last: justify; */
 				/*chrome 20+*/
 			}
 		}

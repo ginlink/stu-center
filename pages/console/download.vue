@@ -1,7 +1,7 @@
 <!--
  * @Author: jiangjin
  * @Date: 2021-10-09 15:09:00
- * @LastEditTime: 2021-10-12 00:18:03
+ * @LastEditTime: 2021-10-13 17:12:00
  * @LastEditors: jiangjin
  * @Description: 
  * 
@@ -12,7 +12,7 @@
 	<view class="download">
 
 		<view class="navbar">
-			<u-navbar back-text="下载" :border-bottom="false">
+			<u-navbar title="下载" :border-bottom="false" titleColor="#303133" titleBold>
 				<!-- #ifndef MP -->
 				<view slot="right">
 					<!-- 右侧菜单功能 -->

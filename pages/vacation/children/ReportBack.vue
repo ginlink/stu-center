@@ -1,7 +1,8 @@
 <template>
 	<view class="report-back">
 		<view class="navbar">
-			<u-navbar back-text="销假" :border-bottom="false"></u-navbar>
+			<!-- <u-navbar back-text="销假" :border-bottom="false" titleColor="#303133" titleBold></u-navbar> -->
+			<u-navbar title="销假" :border-bottom="false" titleColor="#303133" titleBold></u-navbar>
 		</view>
 
 		<view class="remove-vac">

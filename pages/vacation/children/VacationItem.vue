@@ -18,7 +18,7 @@
 					{{vacation.detail.startTime | showDay}}
 				</view>
 				<view class="" style="position: relative;left: 50%;">
-					<uni-icons type="arrowright" size="17"></uni-icons>
+					<uni-icons type="arrowright" size="17" color="silver"></uni-icons>
 				</view>
 			</view>
 		</view>
@@ -87,7 +87,8 @@
 						this.statusColor = '#3685f1'
 						return '未审核'
 					case 2:
-						this.statusColor = '#3685f1'
+						// this.statusColor = '#3685f1'
+						this.statusColor = 'silver'
 						return '已完成'
 				}
 			},

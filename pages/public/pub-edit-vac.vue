@@ -2,7 +2,7 @@
 	<!-- 申请假条 -->
 	<view class="apply-vacation">
 		<view class="navbar">
-			<u-navbar :back-text="title" :border-bottom="false">
+			<u-navbar :title="title" :border-bottom="false" titleColor="#303133" titleBold>
 				<!-- #ifndef MP -->
 				<view slot="right">
 					<!-- 右侧菜单功能 -->

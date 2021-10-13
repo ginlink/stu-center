@@ -2,7 +2,7 @@
 	<view class="stu">
 
 		<view class="navbar">
-			<u-navbar title="学生中心" :border-bottom="false" backIconName="home">
+			<u-navbar title="学生中心" :border-bottom="false" backIconName="https://gitee.com/nahaohao/stu-center/raw/develop/static/home/home.png" backIconSize="56" titleColor="#303133" titleBold>
 				<!-- #ifndef MP -->
 				<view slot="right">
 					<!-- 右侧菜单功能 -->
