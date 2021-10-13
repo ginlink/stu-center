@@ -162,41 +162,21 @@ export default {
       switch (flag) {
         case 1:
           // 学生中心
-          this.$utils.u_tips(
-            {
-              loadding: true,
-            },
-            '/pages/stu/stu'
-          )
+          this.$utils.u_tips('/pages/stu/stu')
           break
         case 2:
           // 学生中心
-          this.$utils.u_tips(
-            {
-              loadding: true,
-            },
-            '/pages/console/download'
-          )
+          this.$utils.u_tips('/pages/console/download')
           break
       }
     },
     localAction(id) {
       switch (id) {
         case 1:
-          this.$utils.u_tips(
-            {
-              loadding: true,
-            },
-            '/pages/setting/index'
-          )
+          this.$utils.u_tips('/pages/setting/index')
           break
         case 2:
-          this.$utils.u_tips(
-            {
-              loadding: true,
-            },
-            '/pages/record/index'
-          )
+          this.$utils.u_tips('/pages/record/index')
           break
       }
     },

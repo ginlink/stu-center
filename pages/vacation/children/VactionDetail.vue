@@ -1,399 +1,402 @@
 <template>
-	<view v-if="vacation" class="vacation-detail" :class="{'vacation-detail-passed':isPassed}">
+  <view v-if="vacation" class="vacation-detail" :class="{ 'vacation-detail-passed': isPassed }">
+    <view class="navbar">
+      <!-- <u-navbar back-text="请假详情" :border-bottom="false"> -->
+      <u-navbar title="请假详情" :border-bottom="false" titleColor="#303133" titleBold>
+        <!-- #ifndef MP -->
+        <view slot="right">
+          <!-- 右侧菜单功能 -->
+          <wechat-menu class="wechat-menu-wrapper"></wechat-menu>
+        </view>
+        <!-- #endif -->
+      </u-navbar>
+    </view>
 
-		<view class="navbar">
-			<!-- <u-navbar back-text="请假详情" :border-bottom="false"> -->
-			<u-navbar title="请假详情" :border-bottom="false" titleColor="#303133" titleBold>
-				<!-- #ifndef MP -->
-				<view slot="right">
-					<!-- 右侧菜单功能 -->
-					<wechat-menu class="wechat-menu-wrapper"></wechat-menu>
-				</view>
-				<!-- #endif -->
-				
-			</u-navbar>
-		</view>
+    <!-- 假条详情页面 -->
+    <view v-if="vacation" class="content" :class="{ space: isPassed }">
+      <view class="status" style="background: #fff; padding: 0 15px">
+        <view class="status-content">
+          <view class="icon" :style="{ backgroundColor: statu && statu.color }">
+            <u-icon name="checkbox-mark" :color="'#fff'" size="112"></u-icon>
+          </view>
+          <text style="font-size: 40rpx; font-weight: 800; display: block">{{ statu && statu.title }}</text>
+        </view>
+        <view class="check" style="">
+          <view
+            class=""
+            style="border-bottom: 1px solid #eee; padding-bottom: 15rpx; font-weight: 500; font-size: 32rpx"
+          >
+            审批情况
+          </view>
+          <view class="" style="margin-top: 30rpx">
+            <text>{{ vacation.detail.checkName }}审批</text>
+            <text style="margin-top: 30rpx; margin-left: 3px; color: silver; font-size: 26rpx">
+              ({{ vacation.detail.checkTime }})</text
+            >
+          </view>
+          <view class="" style="margin-top: 15rpx; color: silver; font-size: 26rpx"> 审批意见: {{ CpuAdvise }} </view>
+        </view>
+        <view style="margin-top: 50rpx">
+          <view style="display: flex; padding-bottom: 15rpx; border-bottom: 1px solid #eee">
+            <text style="flex: 1; font-weight: 500; font-size: 32rpx">请假详情</text>
+            <text style="flex: 2; color: silver; text-align: right"> 申请时间{{ vacation.detail.applyTime }} </text>
+          </view>
+          <view class="detail-body">
+            <view
+              class="detail-item"
+              style="display: flex; padding: 3px 0"
+              v-for="(item, index) in vacationDetialList"
+              :key="index"
+            >
+              <view style="flex: 1">
+                <view class="text">
+                  {{ item.text }}
+                </view>
+              </view>
+              <!-- <view style="flex: 2;margin-left: 20rpx;"> -->
+              <view style="flex: 2">
+                <view>
+                  {{ item.value }}
+                  <view v-if="index == 'endTime' && showDayDiff" class="badge">
+                    {{ showDayDiff }}
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
 
-		<!-- 假条详情页面 -->
-		<view v-if="vacation" class="content" :class="{'space': isPassed}">
-			<view class="status" style="background: #fff; padding: 0 15px;">
-				<view class="status-content">
-					<view class="icon" :style="{backgroundColor: statu && statu.color}">
-						<u-icon name="checkbox-mark" :color="'#fff'" size="112"></u-icon>
-					</view>
-					<text style="font-size: 40rpx;font-weight: 800;display: block;">{{statu && statu.title}}</text>
-				</view>
-				<view class="check" style="">
-					<view class="" style="border-bottom: 1px solid #EEE; padding-bottom: 15rpx; font-weight: 500; font-size: 32rpx;">
-						审批情况
-					</view>
-					<view class="" style="margin-top: 30rpx;">
-						<text>{{vacation.detail.checkName}}审批</text>
-						<text style="margin-top: 30rpx;margin-left: 3px;color: silver;font-size: 26rpx;"> ({{vacation.detail.checkTime}})</text>
-					</view>
-					<view class="" style="margin-top: 15rpx;color: silver;font-size: 26rpx;">
-						审批意见: {{CpuAdvise}}
-					</view>
-				</view>
-				<view style="margin-top: 50rpx;">
-					<view style="display: flex;padding-bottom: 15rpx; border-bottom: 1px solid #eee;">
-						<text style="flex: 1;font-weight: 500; font-size: 32rpx;">请假详情</text>
-						<text style="flex: 2;color: silver;text-align: right;">
-							申请时间{{vacation.detail.applyTime}}
-						</text>
-					</view>
-					<view class="detail-body">
-						<view class="detail-item" style="display: flex;padding: 3px 0" v-for="(item,index) in vacationDetialList" :key="index">
-							<view style="flex: 1;">
-								<view class="text">
-									{{item.text}}
-								</view>
-							</view>
-							<!-- <view style="flex: 2;margin-left: 20rpx;"> -->
-							<view style="flex: 2;">
-								<view>
-									{{item.value}}
-									<view v-if="index=='endTime' && showDayDiff" class="badge">
-										{{showDayDiff}}
-									</view>
-								</view>
-							</view>
+        <!-- <vac-detail-info :VacationDetailInfo="VacationDetailInfo" @click.native="changeVacInfo"></vac-detail-info> -->
+      </view>
+      <vac-footer
+        v-if="statu && statu.code === 3"
+        style="position: fixed; bottom: 0; width: 100%; background-color: #fff"
+        @action="action"
+      ></vac-footer>
 
-						</view>
-					</view>
-				</view>
-
-				<!-- <vac-detail-info :VacationDetailInfo="VacationDetailInfo" @click.native="changeVacInfo"></vac-detail-info> -->
-			</view>
-			<vac-footer v-if="statu && statu.code === 3" style="position: fixed;bottom: 0;width: 100%;background-color: #fff;"
-			 @action="action"></vac-footer>
-
-			<!-- 模态框 -->
-			<u-modal v-model="show" :content="content">
-				<!-- <u-input v-model="name"></u-input> -->
-			</u-modal>
-		</view>
-		<view v-else class="no-data">
-			<view class="text">
-				无此假条数据！
-			</view>
-		</view>
-	</view>
+      <!-- 模态框 -->
+      <u-modal v-model="show" :content="content">
+        <!-- <u-input v-model="name"></u-input> -->
+      </u-modal>
+    </view>
+    <view v-else class="no-data">
+      <view class="text"> 无此假条数据！ </view>
+    </view>
+  </view>
 </template>
 
 <script>
-	import VacFooter from './VacFooter.vue'
-	import {
-		VACATIONDETAIL,
-		FORMATSECOND,
-		FORMATHOUR,
-		FORMATDAY,
-	} from '@/common/const/index.js'
+import VacFooter from './VacFooter.vue'
+import { VACATIONDETAIL, FORMATSECOND, FORMATHOUR, FORMATDAY } from '@/common/const/index.js'
 
-	export default {
-		onLoad(params) {
-			console.log('params:', params);
-			this.currentParams = params
+export default {
+  onLoad(params) {
+    console.log('params:', params)
+    this.currentParams = params
 
-			this.initData(params)
-			this.initEvent()
+    this.initData(params)
+    this.initEvent()
+  },
+  onShow() {
+    this.vacationDetail = uni.getStorageSync(VACATIONDETAIL) // 更新数据
+    this.vacationDetail = Object.assign({}, this.vacationDetail)
+  },
+  components: {
+    VacFooter,
+  },
+  computed: {
+    showDayDiff() {
+      if (!this.vacation) return
 
-		},
-		onShow() {
-			this.vacationDetail = uni.getStorageSync(VACATIONDETAIL) // 更新数据
-			this.vacationDetail = Object.assign({}, this.vacationDetail)
-		},
-		components: {
-			VacFooter,
-		},
-		computed: {
-			showDayDiff() {
-				if(!this.vacation) return
+      let start = this.$dayjs(this.vacation.detail.startTime, FORMATSECOND)
+      let end = this.$dayjs(this.vacation.detail.endTime, FORMATSECOND)
 
-				let start = this.$dayjs(this.vacation.detail.startTime, FORMATSECOND)
-				let end = this.$dayjs(this.vacation.detail.endTime, FORMATSECOND)
+      // this.$log(this.vacation.startTime, 'startTime')
+      this.$log(start, 'start')
 
-				// this.$log(this.vacation.startTime, 'startTime')
-				this.$log(start, 'start')
+      let dayDiff = end.diff(start, 'day') + 1
 
-				let dayDiff = end.diff(start, 'day') + 1
+      if (!dayDiff) return ''
 
-				if (!dayDiff) return ''
+      return dayDiff + '天'
+    },
+    isPassed() {
+      if (!this.vacation) return
 
-				return dayDiff + '天'
-			},
-			isPassed() {
-				if(!this.vacation) return
+      return this.vacation.detail.status == 3
+    },
+    CpuAdvise() {
+      switch (this.vacation.detail.status) {
+        case 0:
+          return '未审核'
+          break
+        case 1:
+          return '未通过'
+          break
+        case 2:
+          return '同意'
+          break
+        case 3:
+          return '同意'
+          break
+      }
+    },
+  },
+  data() {
+    return {
+      currentParams: {},
 
-				return this.vacation.detail.status == 3
-			},
-			CpuAdvise() {
-				switch (this.vacation.detail.status) {
-					case 0:
-						return '未审核'
-						break
-					case 1:
-						return '未通过'
-						break
-					case 2:
-						return '同意'
-						break
-					case 3:
-						return '同意'
-						break
-				}
-			},
-		},
-		data() {
-			return {
-				currentParams: {},
+      statu: null,
+      status: [
+        {
+          code: 0,
+          title: '未审核',
+          color: '#3685F1',
+        },
+        {
+          code: 1,
+          title: '审批未通过',
+          color: '#ee2222',
+        },
+        {
+          code: 2,
+          title: '已完成',
+          color: '#3685F1',
+        },
+        {
+          code: 3,
+          title: '审批通过',
+          color: '#09BA08',
+        },
+      ], // 审批状态0未审核 1通过 2已完成
+      conditionTitle: '审批通过',
+      conditionColor: '#09BA08',
+      show: false,
+      content: '东临碣石，以观沧海',
 
-				statu: null,
-				status: [{
-					code: 0,
-					title: '未审核',
-					color: '#3685F1'
-				}, {
-					code: 1,
-					title: '审批未通过',
-					color: '#ee2222'
-				}, {
-					code: 2,
-					title: '已完成',
-					color: '#3685F1'
-				}, {
-					code: 3,
-					title: '审批通过',
-					color: '#09BA08'
-				}, ], // 审批状态0未审核 1通过 2已完成
-				conditionTitle: '审批通过',
-				conditionColor: '#09BA08',
-				show: false,
-				content: '东临碣石，以观沧海',
+      vacationDetialList: {
+        // applyTime: {
+        // 	text: '请假申请时间:',
+        // 	value: '2021-01-12 10:00:00'
+        // },
+        startTime: {
+          text: '请假开始时间:',
+          value: '2021-01-12 10:00:00',
+        },
+        endTime: {
+          text: '请假结束时间:',
+          value: '2021-01-12 10:00:00',
+        },
+        type: {
+          text: '请假类型:',
+          value: '事假',
+        },
+        reason: {
+          text: '请假原因:',
+          value: '身体不适',
+        },
+        isTellParent: {
+          text: '是否告知家长:',
+          value: 0,
+        },
+        isLeaveSchool: {
+          text: '是否需要离校:',
+          value: 0,
+        },
+        urgentContactName: {
+          text: '紧急联系人:',
+          value: '马云',
+        },
+        urgentContactTel: {
+          text: '紧急联系人电话:',
+          value: '132838238823',
+        },
+        other: {
+          text: '附件: 无',
+          value: '',
+        },
+      },
+      vacation: null,
+    }
+  },
+  methods: {
+    action(flag) {
+      switch (flag) {
+        case 1:
+          // 续假
+          this.$utils.u_tips(
+            {
+              loadding: false,
+              data: {
+                action: 'edit',
+                id: this.vacation.id,
+              },
+            },
+            '/pages/public/pub-edit-vac'
+          )
 
-				vacationDetialList: {
-					// applyTime: {
-					// 	text: '请假申请时间:',
-					// 	value: '2021-01-12 10:00:00'
-					// },
-					startTime: {
-						text: '请假开始时间:',
-						value: '2021-01-12 10:00:00'
-					},
-					endTime: {
-						text: '请假结束时间:',
-						value: '2021-01-12 10:00:00'
-					},
-					type: {
-						text: '请假类型:',
-						value: '事假'
-					},
-					reason: {
-						text: '请假原因:',
-						value: '身体不适'
-					},
-					isTellParent: {
-						text: '是否告知家长:',
-						value: 0,
-					},
-					isLeaveSchool: {
-						text: '是否需要离校:',
-						value: 0,
-					},
-					urgentContactName: {
-						text: '紧急联系人:',
-						value: '马云'
-					},
-					urgentContactTel: {
-						text: '紧急联系人电话:',
-						value: '132838238823'
-					},
-					other: {
-						text: '附件: 无',
-						value: ''
-					},
-				},
-				vacation: null,
-			}
-		},
-		methods: {
-			action(flag) {
-				switch (flag) {
-					case 1:
-						// 续假
-						this.$utils.u_tips({
-							loadding: true,
-							data: {
-								action: 'edit',
-								id: this.vacation.id,
-							}
-						}, '/pages/public/pub-edit-vac')
+          break
+        case 2:
+          // 销假
+          this.$utils.u_tips(
+            {
+              loadding: false,
+              data: {
+                id: this.vacation.id,
+              },
+            },
+            './ReportBack'
+          )
+          break
+      }
+    },
+    initData(params) {
+      this.initVacation(params)
 
-						break
-					case 2:
-						// 销假
-						this.$utils.u_tips({
-							loadding: true,
-							data: {
-								id: this.vacation.id
-							}
-						}, './ReportBack')
-						break
-				}
-			},
-			initData(params) {
+      this.initStatu()
+    },
+    initStatu() {
+      let vacation = this.vacation
+      console.log('vacation:', vacation)
+      this.statu = this.status[vacation.detail.status]
+    },
+    initVacation(params) {
+      let id = parseInt(params && params.id)
+      if (!id) return
 
-				this.initVacation(params)
+      // [服务器]
+      let VacationDetailInfo = uni.getStorageSync(VACATIONDETAIL)
+      let vacDetailList = VacationDetailInfo.data.list
 
-				this.initStatu()
+      this.vacation = vacDetailList.find((item) => {
+        return item.id == id
+      })
 
-			},
-			initStatu() {
-				let vacation = this.vacation
-				console.log('vacation:', vacation);
-				this.statu = this.status[vacation.detail.status]
-			},
-			initVacation(params) {
-				let id = parseInt(params && params.id)
-				if (!id) return
+      this.$log(this.vacation)
 
-				// [服务器]
-				let VacationDetailInfo = uni.getStorageSync(VACATIONDETAIL)
-				let vacDetailList = VacationDetailInfo.data.list
+      if (!this.vacation) return
 
-				this.vacation = vacDetailList.find(item => {
-					return item.id == id
-				})
+      console.log('[](this.vacation):', this.vacation)
 
-				this.$log(this.vacation)
+      // this.vacationDetialList.applyTime.value = this.vacation.detail.applyTime
+      this.vacationDetialList.endTime.value = this.vacation.detail.endTime
+      this.vacationDetialList.isLeaveSchool.value = this.vacation.detail.isLeaveSchool == 0 ? '否' : '是'
+      this.vacationDetialList.isTellParent.value = this.vacation.detail.isTellParent == 0 ? '否' : '是'
+      this.vacationDetialList.other.value = this.vacation.detail?.other ?? ''
+      this.vacationDetialList.reason.value = this.vacation.detail.reason
+      this.vacationDetialList.startTime.value = this.vacation.detail.startTime
+      this.vacationDetialList.type.value = this.vacation.detail.type
+      this.vacationDetialList.urgentContactName.value = this.vacation.detail.urgentContactName
+      this.vacationDetialList.urgentContactTel.value = this.vacation.detail.urgentContactTel
 
-				if (!this.vacation) return
+      console.log('vacation:', this.vacation)
+    },
+    changeVacInfo() {
+      // 弹窗修改
+      this.show = true
+    },
 
-				console.log('[](this.vacation):', this.vacation)
-
-				// this.vacationDetialList.applyTime.value = this.vacation.detail.applyTime
-				this.vacationDetialList.endTime.value = this.vacation.detail.endTime
-				this.vacationDetialList.isLeaveSchool.value = this.vacation.detail.isLeaveSchool == 0 ? '否' : '是'
-				this.vacationDetialList.isTellParent.value = this.vacation.detail.isTellParent == 0 ? '否' : '是'
-				this.vacationDetialList.other.value = this.vacation.detail?.other ?? ''
-				this.vacationDetialList.reason.value = this.vacation.detail.reason
-				this.vacationDetialList.startTime.value = this.vacation.detail.startTime
-				this.vacationDetialList.type.value = this.vacation.detail.type
-				this.vacationDetialList.urgentContactName.value = this.vacation.detail.urgentContactName
-				this.vacationDetialList.urgentContactTel.value = this.vacation.detail.urgentContactTel
-
-				console.log('vacation:', this.vacation);
-			},
-			changeVacInfo() {
-				// 弹窗修改
-				this.show = true
-			},
-
-
-			initEvent() {
-				uni.$on('refreshVacDetailDetail', () => {
-					this.initData(this.currentParams)
-					this.$log('刷新数据', 'initEvent')
-
-				})
-			},
-		}
-	}
+    initEvent() {
+      uni.$on('refreshVacDetailDetail', () => {
+        this.initData(this.currentParams)
+        this.$log('刷新数据', 'initEvent')
+      })
+    },
+  },
+}
 </script>
 
 <style lang="scss" scoped>
-	// .vacation-detail-passed {
-	// 	overflow: auto;
-	// }
+// .vacation-detail-passed {
+// 	overflow: auto;
+// }
 
-	.vacation-detail {
-		min-height: 100vh;
-		background-color: $wm-bg-fff;
+.vacation-detail {
+  min-height: 100vh;
+  background-color: $wm-bg-fff;
 
-		// 占位，将底部tabbar空间预留
-		.space {
-			padding-bottom: 80rpx;
-		}
+  // 占位，将底部tabbar空间预留
+  .space {
+    padding-bottom: 80rpx;
+  }
 
-		.content {
+  .content {
+    // min-height: 100vh;
+    .check {
+      margin-top: 80rpx;
+    }
 
-			// min-height: 100vh;
-			.check {
-				margin-top: 80rpx;
-			}
+    .status-content {
+      text-align: center;
+      margin-top: 80rpx;
+    }
+    .icon {
+      margin: 0 auto;
+      width: 200rpx;
+      height: 200rpx;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: red;
+      border-radius: 50%;
+    }
+  }
 
-			.status-content {
-				text-align: center;
-				margin-top: 80rpx;
-			}
-			.icon{
-				margin: 0 auto;
-				width: 200rpx;
-				height: 200rpx;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				background-color: red;
-				border-radius: 50%;
-			}
-		}
+  .no-data {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+  }
 
-		.no-data {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			height: 80vh;
-		}
+  .detail-body {
+    margin-top: 15rpx;
 
-		.detail-body {
-			margin-top: 15rpx;
+    .badge {
+      display: inline-block;
+      font-size: 24rpx;
+      color: $wm-bg-fff;
 
-			.badge {
-				display: inline-block;
-				font-size: 24rpx;
-				color: $wm-bg-fff;
+      background-color: $theme-color;
+      text-align: center;
+      vertical-align: baseline;
 
-				background-color: $theme-color;
-				text-align: center;
-				vertical-align: baseline;
+      padding: 1rpx 10rpx;
+      margin-left: 3rpx;
 
-				padding: 1rpx 10rpx;
-				margin-left: 3rpx;
+      border-radius: 10rpx;
 
-				border-radius: 10rpx;
+      transform: scale(0.7);
+    }
+  }
 
-				transform: scale(.7);
-			}
-		}
+  .detail-item {
+    .text {
+      // 文本两端对齐
+      /* text-align: justify; */
+      /* text-justify: distribute-all-lines; */
+      /*ie6-8*/
+      /* text-align-last: justify; */
+      /* ie9*/
+      /* -moz-text-align-last: justify; */
+      /*ff*/
+      /* -webkit-text-align-last: justify; */
+      /*chrome 20+*/
+    }
+  }
 
-		.detail-item {
-
-			.text {
-				// 文本两端对齐
-				/* text-align: justify; */
-				/* text-justify: distribute-all-lines; */
-				/*ie6-8*/
-				/* text-align-last: justify; */
-				/* ie9*/
-				/* -moz-text-align-last: justify; */
-				/*ff*/
-				/* -webkit-text-align-last: justify; */
-				/*chrome 20+*/
-			}
-		}
-
-		.detail-item:last-child {
-			.text {
-				text-align: unset;
-				text-justify: unset;
-				/*ie6-8*/
-				text-align-last: unset;
-				/* ie9*/
-				-moz-text-align-last: unset;
-				/*ff*/
-				-webkit-text-align-last: unset;
-				/*chrome 20+*/
-			}
-		}
-	}
+  .detail-item:last-child {
+    .text {
+      text-align: unset;
+      text-justify: unset;
+      /*ie6-8*/
+      text-align-last: unset;
+      /* ie9*/
+      -moz-text-align-last: unset;
+      /*ff*/
+      -webkit-text-align-last: unset;
+      /*chrome 20+*/
+    }
+  }
+}
 </style>

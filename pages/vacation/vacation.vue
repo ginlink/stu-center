@@ -287,7 +287,7 @@ export default {
 
           this.$utils.u_tips(
             {
-              loadding: true,
+              loadding: false,
               data: {
                 action: 'edit',
                 id: item.id,
@@ -312,7 +312,7 @@ export default {
       console.log('点击')
       this.$utils.u_tips(
         {
-          loadding: true,
+          loadding: false,
           data: {
             id: item.id,
           },
@@ -324,7 +324,7 @@ export default {
       console.log('请假')
       this.$utils.u_tips(
         {
-          loadding: true,
+          loadding: false,
           data: {
             action: 'add',
           },

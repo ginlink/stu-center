@@ -201,12 +201,7 @@ export default {
       this.form = this.$u.deepClone(StuInfoData)
     },
     customBack() {
-      this.$utils.u_tips(
-        {
-          loadding: true,
-        },
-        '/pages/console/console'
-      )
+      this.$utils.u_tips('/pages/console/console')
     },
   },
 }
