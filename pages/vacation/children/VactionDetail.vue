@@ -2,7 +2,8 @@
 	<view v-if="vacation" class="vacation-detail" :class="{'vacation-detail-passed':isPassed}">
 
 		<view class="navbar">
-			<u-navbar back-text="请假详情" :border-bottom="false">
+			<!-- <u-navbar back-text="请假详情" :border-bottom="false"> -->
+			<u-navbar title="请假详情" :border-bottom="false">
 				<!-- #ifndef MP -->
 				<view slot="right">
 					<!-- 右侧菜单功能 -->

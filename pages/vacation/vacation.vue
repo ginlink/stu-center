@@ -1,7 +1,8 @@
 <template>
 	<view class="vacation">
 		<view class="navbar">
-			<u-navbar back-text="我的请假" :border-bottom="false">
+			<!-- <u-navbar back-text="我的请假" :border-bottom="false" title="我的请假"> -->
+			<u-navbar :border-bottom="false" title="我的请假">
 				<!-- #ifndef MP -->
 				<view slot="right">
 					<!-- 右侧菜单功能 -->

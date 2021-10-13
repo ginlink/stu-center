@@ -2,7 +2,7 @@
 	<view class="stu">
 
 		<view class="navbar">
-			<u-navbar back-text="学生中心" :border-bottom="false">
+			<u-navbar title="学生中心" :border-bottom="false" backIconName="home">
 				<!-- #ifndef MP -->
 				<view slot="right">
 					<!-- 右侧菜单功能 -->
