@@ -1,7 +1,7 @@
 /*
  * @Author: jiangjin
  * @Date: 2021-09-30 16:55:30
- * @LastEditTime: 2021-10-13 17:57:29
+ * @LastEditTime: 2021-10-13 22:18:58
  * @LastEditors: jiangjin
  * @Description: 
  * 
@@ -9,8 +9,14 @@
 // router/modules/home.js
 const home = [{
 	//注意：path必须跟pages.json中的地址对应，最前面别忘了加'/'哦
+	path: '/pages/index',
+	name: 'index',
+	meta: {
+		title: '入口',
+	},
+}, {
+	//注意：path必须跟pages.json中的地址对应，最前面别忘了加'/'哦
 	path: '/pages/console/console',
-	aliasPath: '/', //对于h5端你必须在首页加上aliasPath并设置为/
 	name: 'console',
 	meta: {
 		title: '首页',
