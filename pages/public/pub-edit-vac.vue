@@ -476,15 +476,6 @@ export default {
         return bTime - aTime
       })
 
-      // vacation = this._.orderBy(
-      //   vacation,
-      //   (o) => {
-      //     let stand = this.$dayjs(o.detail.startTime, FORMATSECOND).unix()
-      //     return stand
-      //   },
-      //   'desc'
-      // )
-
       return vacations
     },
 

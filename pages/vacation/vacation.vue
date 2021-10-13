@@ -379,16 +379,6 @@ export default {
     sortVacList() {
       // 根据时间排序
       // 开始时间
-      // this.vacationList = this._.orderBy(
-      //   this.vacationList,
-      //   (o) => {
-      //     let stand = this.$dayjs(o.detail.startTime, FORMATSECOND).unix()
-
-      //     return stand
-      //   },
-      //   'desc'
-      // )
-
       this.vacationList = this.vacationList.sort((a, b) => {
         let aTime = this.$dayjs(a.detail.startTime, FORMATSECOND).unix()
         let bTime = this.$dayjs(b.detail.startTime, FORMATSECOND).unix()

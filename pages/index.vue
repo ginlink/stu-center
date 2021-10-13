@@ -1,7 +1,7 @@
 <!--
  * @Author: jiangjin
  * @Date: 2021-10-13 22:04:25
- * @LastEditTime: 2021-10-13 23:21:59
+ * @LastEditTime: 2021-10-13 23:47:31
  * @LastEditors: jiangjin
  * @Description: 
  * 
@@ -29,19 +29,11 @@ export default {
   methods: {
     initPage() {
       const startPage = uni.getStorageSync(START_PAGE) ?? ''
-      // uni.showLoading({
-      //   title: '加载中',
-      // })
 
       if (startPage) {
-        // this.$utils.u_tips(startPage)
-        uni.navigateTo({
+        uni.redirectTo({
           url: startPage,
         })
-
-        // setTimeout(() => {
-        //   uni.hideLoading()
-        // }, 300)
       }
     },
   },
