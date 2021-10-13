@@ -564,7 +564,11 @@
 					case 'edit':
 						console.log('[edited]vac:', this.vacation);
 						let edittmp = this.freshVac(this.form)
+						
+						edittmp = actionCalcTime(edittmp)
 						let editindex = this.getIndex(edittmp.id)
+
+						debugger
 
 						this.saveVac(editindex, edittmp)
 
