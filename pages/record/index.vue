@@ -1,21 +1,14 @@
 <!--
  * @Author: jiangjin
  * @Date: 2021-09-30 16:55:30
- * @LastEditTime: 2021-10-13 20:41:30
+ * @LastEditTime: 2021-10-13 20:47:22
  * @LastEditors: jiangjin
  * @Description: 
  * 
 -->
 <template>
   <view class="record">
-    <u-navbar
-      title="更新日志"
-      :border-bottom="false"
-      backIconSize="56"
-      titleColor="#303133"
-      titleBold
-      :customBack="customBack"
-    >
+    <u-navbar title="更新日志" :border-bottom="false" titleColor="#303133" titleBold :customBack="customBack">
       <!-- #ifndef MP -->
       <view slot="right">
         <!-- 右侧菜单功能 -->
@@ -74,7 +67,7 @@ export default {
 <style lang="scss" scoped>
 .record {
   .content {
-    padding: 30rpx 60rpx 0;
+    padding: 30rpx 60rpx;
     background-color: #fff;
 
     .u-node {
