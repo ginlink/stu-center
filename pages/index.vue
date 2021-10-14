@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     initPage() {
-      const startPage = uni.getStorageSync(START_PAGE) ?? ''
+      const startPage = uni.getStorageSync(START_PAGE) || '/pages/console/console'
 
       if (startPage) {
         uni.redirectTo({
