@@ -9,6 +9,9 @@ import { START_PAGE } from '@/common/misc.js'
 
 export default {
   onLaunch: function () {
+    uni.showLoading({
+      title: '加载中',
+    })
     console.log('App Launch')
 
     this.initData() // 初始化全局信息
@@ -45,6 +48,7 @@ export default {
           const data = res.data.data ?? {}
 
           this.$store.commit('updateCenterMenu', data)
+          uni.hideLoading()
         })
         .catch((err) => {
           console.log('err:func(created)(stu)', err)

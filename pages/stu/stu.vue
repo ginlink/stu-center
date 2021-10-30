@@ -132,13 +132,8 @@ export default {
     StuInfo,
     item,
   },
-  onLoad(params) {
-    this.initStuInfo()
-  },
   created() {
-    uni.showLoading({
-      title: '加载中',
-    })
+    this.initStuInfo()
   },
   data() {
     return {
