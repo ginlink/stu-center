@@ -135,7 +135,11 @@ export default {
   onLoad(params) {
     this.initStuInfo()
   },
-  created() {},
+  created() {
+    uni.showLoading({
+      title: '加载中',
+    })
+  },
   data() {
     return {
       backIconName,
@@ -194,6 +198,8 @@ export default {
     otherList() {
       const centerMenu = this.$store.getters?.centerMenu
       if (!centerMenu) return []
+
+      uni.hideLoading()
 
       console.log('[](centerMenu):', centerMenu)
       const list = centerMenu.otherList?.data
