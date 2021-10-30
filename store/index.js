@@ -1,7 +1,7 @@
 /*
  * @Author: jiangjin
  * @Date: 2021-09-30 16:55:30
- * @LastEditTime: 2021-10-13 21:39:16
+ * @LastEditTime: 2021-10-30 15:34:58
  * @LastEditors: jiangjin
  * @Description: 
  * 
@@ -13,11 +13,27 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
 	state: {
-		isLoadStartPage: false
+		isLoadStartPage: false,
+		centerMenu: null,
+		appNum: undefined,
 	},
 	mutations: {
 		updateIsLoadStartPage(store, payload) {
 			store.isLoadStartPage = payload
+		},
+		updateCenterMenu(store, payload) {
+			store.centerMenu = payload
+		},
+		updateAppNum(store, payload) {
+			store.appNum = payload
+		}
+	},
+	getters: {
+		centerMenu: state => {
+			return state.centerMenu
+		},
+		appNum: state => {
+			return state.appNum
 		}
 	}
 })

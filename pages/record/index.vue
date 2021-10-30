@@ -1,7 +1,7 @@
 <!--
  * @Author: jiangjin
  * @Date: 2021-09-30 16:55:30
- * @LastEditTime: 2021-10-13 20:47:22
+ * @LastEditTime: 2021-10-30 00:34:08
  * @LastEditors: jiangjin
  * @Description: 
  * 
@@ -41,7 +41,8 @@
 
       <view class="contract-me">
         <view>注意：此程序为娱乐小程序，仅供消遣和学习使用，请忽用于商业用途！</view>
-        <view>如遇到问题，请邮联：hap_hap@163.com</view>
+        <view>如遇到问题，可以直接点击【菜单->反馈与投诉】中进行反馈</view>
+        <view>或者请邮联：hap_hap@163.com</view>
       </view>
     </view>
   </view>

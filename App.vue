@@ -12,6 +12,10 @@ export default {
     console.log('App Launch')
 
     this.initData() // 初始化全局信息
+
+    this.initCenterMenu()
+
+    this.initAppNum()
   },
   onShow: function () {
     console.log('App Show')
@@ -20,6 +24,32 @@ export default {
     console.log('App Hide')
   },
   methods: {
+    initAppNum() {
+      this.$http
+        .get('/api/appNum')
+        .then((res) => {
+          const data = res.data.data ?? {}
+          const appNum = data?.app_num
+          if (!appNum) return
+
+          this.$store.commit('updateAppNum', appNum)
+        })
+        .catch((err) => {
+          console.log('err:func(applications)(created)', err)
+        })
+    },
+    initCenterMenu() {
+      this.$http
+        .get('/api/centermenu_v2_backup')
+        .then((res) => {
+          const data = res.data.data ?? {}
+
+          this.$store.commit('updateCenterMenu', data)
+        })
+        .catch((err) => {
+          console.log('err:func(created)(stu)', err)
+        })
+    },
     // this.initVacation
     initData() {
       let vacDetail = uni.getStorageSync(VACATIONDETAIL)

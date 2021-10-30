@@ -126,6 +126,11 @@ import mockIcon from '@/static/home/student.png'
 import applicationIcon from '@/static/console/application.png'
 import moreIcon from '@/static/console/more.png'
 
+const existApp = [
+  { id: 1, name: '模拟请假', icon: mockIcon },
+  { id: 2, name: '下载', icon: applicationIcon },
+]
+
 export default {
   data() {
     return {
@@ -153,9 +158,15 @@ export default {
         },
       ],
       current: 0,
-      applications: [],
-      appNum: 1,
     }
+  },
+  computed: {
+    applications() {
+      const appNum = this.$store.getters?.appNum
+      if (!appNum) return []
+
+      return existApp.slice(0, appNum)
+    },
   },
   methods: {
     action(flag) {
@@ -210,27 +221,7 @@ export default {
       })
     },
   },
-  created() {
-    console.log('applicationIcon', applicationIcon)
-    const applications = [
-      { id: 1, name: '模拟请假', icon: mockIcon },
-      { id: 2, name: '下载', icon: applicationIcon },
-    ]
-
-    this.$http
-      .get('/api/appNum')
-      .then((res) => {
-        const data = res.data.data ?? {}
-        const appNum = data.app_num ?? ''
-
-        if (appNum) {
-          this.applications = applications.slice(0, appNum)
-        }
-      })
-      .catch((err) => {
-        console.log('err:func(applications)(created)', err)
-      })
-  },
+  created() {},
 }
 </script>
 

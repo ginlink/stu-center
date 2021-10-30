@@ -40,7 +40,7 @@
           </view>
         </view>
         <view class="arrow-right">
-          <u-icon name="arrow-right" size="24" :color="subColor"></u-icon>
+          <u-icon name="arrow-right" size="24"></u-icon>
         </view>
       </view>
       <view class="card" v-if="utilList.length > 0">
@@ -57,7 +57,7 @@
       <view class="card study-card" v-if="studyList.length > 0">
         <view class="title">学习日常</view>
         <view class="list">
-          <view class="item" v-for="item in studyList" :key="item.id">
+          <view class="item" v-for="item in studyList" :key="item.id" @click="navClick(item)">
             <view class="item-img">
               <image :src="item.icon"></image>
             </view>
@@ -68,7 +68,7 @@
       <view class="card other-card" v-if="otherList.length > 0">
         <view class="title">其他</view>
         <view class="list">
-          <view class="item" v-for="item in otherList" :key="item.id">
+          <view class="item" v-for="item in otherList" :key="item.id" @click="navClick(item)">
             <view class="item-img">
               <image :src="item.icon"></image>
             </view>
@@ -135,32 +135,9 @@ export default {
   onLoad(params) {
     this.initStuInfo()
   },
-  created() {
-    this.$http
-      .get('/api/centermenu_v2')
-      .then((res) => {
-        const data = res.data.data ?? {}
-
-        const utilList = data?.utilList
-        const studyList = data?.studyList
-        const otherList = data?.otherList
-
-        console.log('[](data):', data)
-
-        if (utilList) this.utilList = utilList.data?.slice(0, utilList.open_num)
-        if (studyList) this.studyList = studyList.data?.slice(0, studyList.open_num)
-        if (otherList) this.otherList = otherList.data?.slice(0, otherList.open_num)
-      })
-      .catch((err) => {
-        console.log('err:func(created)(stu)', err)
-      })
-  },
+  created() {},
   data() {
     return {
-      otherList: [],
-      studyList: [],
-      utilList: [],
-
       backIconName,
       // popup
       menuShow: false,
@@ -212,6 +189,36 @@ export default {
       // form
       stuInfo: {},
     }
+  },
+  computed: {
+    otherList() {
+      const centerMenu = this.$store.getters?.centerMenu
+      if (!centerMenu) return []
+
+      console.log('[](centerMenu):', centerMenu)
+      const list = centerMenu.otherList?.data
+      const openNum = centerMenu.otherList?.open_num
+
+      return list?.slice(0, openNum)
+    },
+    studyList() {
+      const centerMenu = this.$store.getters?.centerMenu
+      if (!centerMenu) return []
+
+      const list = centerMenu.studyList?.data
+      const openNum = centerMenu.studyList?.open_num
+
+      return list?.slice(0, openNum)
+    },
+    utilList() {
+      const centerMenu = this.$store.getters?.centerMenu
+      if (!centerMenu) return []
+
+      const list = centerMenu.utilList?.data
+      const openNum = centerMenu.utilList?.open_num
+
+      return list?.slice(0, openNum)
+    },
   },
   methods: {
     navClick(item) {
