@@ -19,6 +19,8 @@ export default {
     this.initCenterMenu()
 
     this.initAppNum()
+
+    this.initNoticeList()
   },
   onShow: function () {
     console.log('App Show')
@@ -27,6 +29,20 @@ export default {
     console.log('App Hide')
   },
   methods: {
+    initNoticeList() {
+      this.$http
+        .get('/api/notices')
+        .then((res) => {
+          const data = res.data.data ?? {}
+          const notices = data?.notices
+          if (!notices) return
+
+          this.$store.commit('updateNotices', notices)
+        })
+        .catch((err) => {
+          console.log('err:func(initNoticeList)(notices request failed!)', err)
+        })
+    },
     initAppNum() {
       this.$http
         .get('/api/appNum')

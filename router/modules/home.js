@@ -35,6 +35,12 @@ const home = [{
 		title: '下载',
 	},
 }, {
+	path: '/pages/console/notice',
+	name: 'notice',
+	meta: {
+		title: '公告',
+	},
+}, {
 	path: '/pages/vacation/vacation',
 	name: 'vacation',
 	meta: {

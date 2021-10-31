@@ -24,41 +24,47 @@
     </view>
     <!-- <button type="default" @click="stuCenter">学生中心</button> -->
 
-    <view class="u-page">
-      <!-- 所有内容的容器 -->
-      <view v-if="current == 0" class="home">
-        <view class="box-wrapper">
-          <view class="box">
-            <view class="box-item" v-for="item in applications" @click="action(item.id)" :key="item.id">
-              <view class="icon">
-                <image :src="item.icon"></image>
-              </view>
-              <view class="title">
-                {{ item.name }}
-              </view>
-            </view>
-            <view class="box-item" @click="localAction(1)">
-              <view class="icon">
-                <!-- <image src="@/static/console/more.png"></image> -->
-                <u-icon name="setting" size="118"></u-icon>
-              </view>
-              <view class="title"> 设置 </view>
-            </view>
-            <view class="box-item" @click="localAction(2)">
-              <view class="icon">
-                <!-- <image src="@/static/console/more.png"></image> -->
-                <u-icon name="file-text" size="118"></u-icon>
-              </view>
-              <view class="title"> 更新日志 </view>
-            </view>
-            <view class="box-item">
-              <view class="icon">
-                <image src="@/static/console/more.png"></image>
-              </view>
-              <view class="title"> 更多敬请期待... </view>
-            </view>
+    <view class="content">
+      <view class="notice">
+        <!-- <u-notice-bar mode="horizontal" :list="noticeList"></u-notice-bar> -->
+        <u-notice-bar mode="vertical" :list="noticeList" :duration="3000" @click="noticeClick"></u-notice-bar>
+      </view>
 
-            <!-- <view class="box-item" @click="action(1)">
+      <view class="u-page">
+        <!-- 目前只有home生效 -->
+        <view v-if="current == 0" class="home">
+          <view class="box-wrapper">
+            <view class="box">
+              <view class="box-item" v-for="item in applications" @click="action(item.id)" :key="item.id">
+                <view class="icon">
+                  <image :src="item.icon"></image>
+                </view>
+                <view class="title">
+                  {{ item.name }}
+                </view>
+              </view>
+              <view class="box-item" @click="localAction(1)">
+                <view class="icon">
+                  <!-- <image src="@/static/console/more.png"></image> -->
+                  <u-icon name="setting" size="118"></u-icon>
+                </view>
+                <view class="title"> 设置 </view>
+              </view>
+              <view class="box-item" @click="localAction(2)">
+                <view class="icon">
+                  <!-- <image src="@/static/console/more.png"></image> -->
+                  <u-icon name="file-text" size="118"></u-icon>
+                </view>
+                <view class="title"> 更新日志 </view>
+              </view>
+              <view class="box-item">
+                <view class="icon">
+                  <image src="@/static/console/more.png"></image>
+                </view>
+                <view class="title"> 更多敬请期待... </view>
+              </view>
+
+              <!-- <view class="box-item" @click="action(1)">
 						
 							<view class="icon">
 								<image src="@/static/home/student.png"></image>
@@ -83,19 +89,19 @@
 								更多敬请期待...
 							</view>
 						</view> -->
+            </view>
           </view>
         </view>
-      </view>
 
-      <view v-if="current == 1" class="profile">
-        <!-- <view class="icon" @click="showInfo=true"> -->
-        <!-- <u-loading :show="showLoadding" size="56"></u-loading>
+        <view v-if="current == 1" class="profile">
+          <!-- <view class="icon" @click="showInfo=true"> -->
+          <!-- <u-loading :show="showLoadding" size="56"></u-loading>
 					<view v-if="showLoadding" class="text">
 						加载中...
 					</view>
 					<u-empty :show="showEmpty" text="所谓伊人，在水一方" mode="list"></u-empty> -->
-        <!-- <u-popup v-model="showInfo" mode="center" height="60%"> -->
-        <!-- <u-popup v-model="showInfo" mode="center" width="70%" closeable>
+          <!-- <u-popup v-model="showInfo" mode="center" height="60%"> -->
+          <!-- <u-popup v-model="showInfo" mode="center" width="70%" closeable>
 						<view class="wrapper">
 							<view class="about">
 								<view>
@@ -111,9 +117,11 @@
 							
 						</view>
 					</u-popup> -->
-        <!-- </view> -->
+          <!-- </view> -->
+        </view>
       </view>
     </view>
+
     <!-- 与包裹页面所有内容的元素u-page同级，且在它的下方 -->
     <!-- <u-tabbar v-model="current" :list="list" @change="change"></u-tabbar> -->
 
@@ -134,11 +142,9 @@ const existApp = [
 export default {
   data() {
     return {
-      // 辅助变量
       showInfo: false,
       showEmpty: false,
       showLoadding: true,
-      // 辅助变量
 
       list: [
         {
@@ -167,8 +173,19 @@ export default {
 
       return existApp.slice(0, appNum)
     },
+    noticeList() {
+      const notices = this.$store.getters?.notices
+
+      return notices ? notices.map((item) => item.title) : []
+    },
   },
   methods: {
+    noticeClick(index) {
+      console.log('[](点击notice):', index)
+      uni.navigateTo({
+        url: `/pages/console/notice?id=${index + 1}`,
+      })
+    },
     action(flag) {
       switch (flag) {
         case 1:

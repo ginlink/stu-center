@@ -16,6 +16,7 @@ export const store = new Vuex.Store({
 		isLoadStartPage: false,
 		centerMenu: null,
 		appNum: undefined,
+		notices: null,
 	},
 	mutations: {
 		updateIsLoadStartPage(store, payload) {
@@ -26,6 +27,9 @@ export const store = new Vuex.Store({
 		},
 		updateAppNum(store, payload) {
 			store.appNum = payload
+		},
+		updateNotices(store, payload) {
+			store.notices = payload
 		}
 	},
 	getters: {
@@ -34,6 +38,9 @@ export const store = new Vuex.Store({
 		},
 		appNum: state => {
 			return state.appNum
+		},
+		notices: state => {
+			return state.notices
 		}
 	}
 })
