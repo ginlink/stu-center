@@ -11,6 +11,6 @@ export const VERSION_NODES = [
   }, {
     version: '1.2.3', pieces: ['* 修复首页白屏问题', '* 缓存数据，加快访问速度'], updateTime: '2021-10-30 19:29:10'
   }, {
-    version: '1.2.4', pieces: ['* 增加更新弹窗', '* 增加公告功能', '* 调整一些小样式'], updateTime: '2021-10-31 22:23:52'
+    version: '1.2.4', pieces: ['* 增加更新说明弹窗', '* 增加公告功能', '* 适配iPhoneX'], updateTime: '2021-11-01 14:45:41'
   },
 ]
