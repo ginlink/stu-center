@@ -1,11 +1,3 @@
-/*
- * @Author: jiangjin
- * @Date: 2021-09-30 16:55:30
- * @LastEditTime: 2021-10-30 15:34:58
- * @LastEditors: jiangjin
- * @Description: 
- * 
- */
 import Vue from 'vue'
 import Vuex from 'vuex'
 
@@ -17,6 +9,7 @@ export const store = new Vuex.Store({
 		centerMenu: null,
 		appNum: undefined,
 		notices: null,
+		version: undefined,
 	},
 	mutations: {
 		updateIsLoadStartPage(store, payload) {
@@ -30,6 +23,9 @@ export const store = new Vuex.Store({
 		},
 		updateNotices(store, payload) {
 			store.notices = payload
+		},
+		updateVersion(store, payload) {
+			store.version = payload
 		}
 	},
 	getters: {
@@ -42,5 +38,10 @@ export const store = new Vuex.Store({
 		notices: state => {
 			return state.notices
 		}
+		,
+		version: state => {
+			return state.version
+		}
+
 	}
 })

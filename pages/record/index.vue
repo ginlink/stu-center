@@ -31,7 +31,7 @@
             <view>
               <view class="u-order-title">{{ node.version }}</view>
               <view class="u-order-desc">
-                <view v-for="piece in node.pieces">{{ piece }}</view>
+                <view v-for="(piece, index) in node.pieces" :key="index">{{ piece }}</view>
               </view>
               <view class="u-order-time">{{ node.updateTime }}</view>
             </view>

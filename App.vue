@@ -21,6 +21,8 @@ export default {
     this.initAppNum()
 
     this.initNoticeList()
+
+    this.initVersion()
   },
   onShow: function () {
     console.log('App Show')
@@ -29,6 +31,20 @@ export default {
     console.log('App Hide')
   },
   methods: {
+    initVersion() {
+      this.$http
+        .get('/api/version')
+        .then((res) => {
+          const data = res.data.data ?? {}
+          const version = data
+          if (!version) return
+
+          this.$store.commit('updateVersion', version)
+        })
+        .catch((err) => {
+          console.log('err:func(initVersion)(version request failed!)', err)
+        })
+    },
     initNoticeList() {
       this.$http
         .get('/api/notices')
