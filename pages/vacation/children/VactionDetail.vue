@@ -19,43 +19,44 @@
           <view class="icon" :style="{ backgroundColor: statu && statu.color }">
             <u-icon name="checkbox-mark" :color="'#fff'" size="112"></u-icon>
           </view>
-          <text style="font-size: 40rpx; font-weight: 800; display: block">{{ statu && statu.title }}</text>
+          <text style="font-size: 36rpx; font-weight: 500; display: block; margin-top: 30rpx">{{
+            statu && statu.title
+          }}</text>
         </view>
         <view class="check" style="">
-          <view
-            class=""
-            style="border-bottom: 1px solid #eee; padding-bottom: 15rpx; font-weight: 500; font-size: 32rpx"
-          >
+          <view class="" style="border-bottom: 1px solid #eee; padding-bottom: 15rpx; font-size: 32rpx">
             审批情况
           </view>
           <view class="" style="margin-top: 30rpx">
-            <text>{{ vacation.detail.checkName }}审批</text>
-            <text style="margin-top: 30rpx; margin-left: 3px; color: silver; font-size: 26rpx">
-              ({{ vacation.detail.checkTime }})</text
+            <text style="font-size: 30rpx">{{ vacation.detail.checkName }}审批</text>
+            <text style="margin-top: 20rpx; margin-left: 3px; color: #9b9b9b; font-size: 24rpx">
+              ({{ vacation.detail.checkTime.slice(0, -3) }})</text
             >
           </view>
-          <view class="" style="margin-top: 15rpx; color: silver; font-size: 26rpx"> 审批意见: {{ CpuAdvise }} </view>
+          <view class="" style="margin-top: 15rpx; color: #9b9b9b; font-size: 26rpx"> 审批意见: {{ CpuAdvise }} </view>
         </view>
-        <view style="margin-top: 50rpx">
+        <view style="margin-top: 30rpx">
           <view style="display: flex; padding-bottom: 15rpx; border-bottom: 1px solid #eee">
-            <text style="flex: 1; font-weight: 500; font-size: 32rpx">请假详情</text>
-            <text style="flex: 2; color: silver; text-align: right"> 申请时间{{ vacation.detail.applyTime }} </text>
+            <text style="flex: 1; font-size: 32rpx">请假详情</text>
+            <text style="flex: 2; color: #9b9b9b; text-align: right; font-size: 28rpx">
+              申请时间{{ vacation.detail.applyTime }}
+            </text>
           </view>
           <view class="detail-body">
             <view
               class="detail-item"
-              style="display: flex; padding: 3px 0"
+              style="display: flex; align-items: center; padding: 3px 0"
               v-for="(item, index) in vacationDetialList"
               :key="index"
             >
               <view style="flex: 1">
-                <view class="text">
+                <view class="title">
                   {{ item.text }}
                 </view>
               </view>
               <!-- <view style="flex: 2;margin-left: 20rpx;"> -->
               <view style="flex: 2">
-                <view>
+                <view class="value">
                   {{ item.value }}
                   <view v-if="index == 'endTime' && showDayDiff" class="badge">
                     {{ showDayDiff }}
@@ -68,11 +69,7 @@
 
         <!-- <vac-detail-info :VacationDetailInfo="VacationDetailInfo" @click.native="changeVacInfo"></vac-detail-info> -->
       </view>
-      <vac-footer
-        v-if="statu && statu.code === 3"
-        style="position: fixed; bottom: 0; width: 100%; background-color: #fff"
-        @action="action"
-      ></vac-footer>
+      <vac-footer v-if="statu && statu.code === 3" @action="action"></vac-footer>
 
       <!-- 模态框 -->
       <u-modal v-model="show" :content="content">
@@ -180,7 +177,7 @@ export default {
         // 	value: '2021-01-12 10:00:00'
         // },
         startTime: {
-          text: '请假开始时间:',
+          text: '开始请假时间:',
           value: '2021-01-12 10:00:00',
         },
         endTime: {
@@ -279,12 +276,12 @@ export default {
       console.log('[](this.vacation):', this.vacation)
 
       // this.vacationDetialList.applyTime.value = this.vacation.detail.applyTime
-      this.vacationDetialList.endTime.value = this.vacation.detail.endTime
+      this.vacationDetialList.endTime.value = this.vacation.detail.endTime.slice(0, -3)
       this.vacationDetialList.isLeaveSchool.value = this.vacation.detail.isLeaveSchool == 0 ? '否' : '是'
       this.vacationDetialList.isTellParent.value = this.vacation.detail.isTellParent == 0 ? '否' : '是'
       this.vacationDetialList.other.value = this.vacation.detail?.other ?? ''
       this.vacationDetialList.reason.value = this.vacation.detail.reason
-      this.vacationDetialList.startTime.value = this.vacation.detail.startTime
+      this.vacationDetialList.startTime.value = this.vacation.detail.startTime.slice(0, -3)
       this.vacationDetialList.type.value = this.vacation.detail.type
       this.vacationDetialList.urgentContactName.value = this.vacation.detail.urgentContactName
       this.vacationDetialList.urgentContactTel.value = this.vacation.detail.urgentContactTel
@@ -317,11 +314,12 @@ export default {
 
   // 占位，将底部tabbar空间预留
   .space {
-    padding-bottom: 80rpx;
+    padding-bottom: 120rpx;
+    padding-bottom: calc(120rpx + constant(safe-area-inset-bottom));
+    padding-bottom: calc(120rpx + env(safe-area-inset-bottom));
   }
 
   .content {
-    // min-height: 100vh;
     .check {
       margin-top: 80rpx;
     }
@@ -354,39 +352,33 @@ export default {
 
     .badge {
       display: inline-block;
-      font-size: 24rpx;
-      color: $wm-bg-fff;
-
-      background-color: $theme-color;
+      font-size: 22rpx;
+      color: #ffffff;
+      background-color: #3685f1;
       text-align: center;
       vertical-align: baseline;
-
-      padding: 1rpx 10rpx;
-      margin-left: 3rpx;
-
+      padding: 7rpx 8rpx;
+      margin-left: 6rpx;
       border-radius: 10rpx;
-
-      transform: scale(0.7);
+      line-height: 1;
     }
   }
 
   .detail-item {
-    .text {
-      // 文本两端对齐
-      /* text-align: justify; */
-      /* text-justify: distribute-all-lines; */
-      /*ie6-8*/
-      /* text-align-last: justify; */
-      /* ie9*/
-      /* -moz-text-align-last: justify; */
-      /*ff*/
-      /* -webkit-text-align-last: justify; */
-      /*chrome 20+*/
+    .title,
+    .value {
+      color: #636363;
+    }
+    .title {
+      font-size: 29rpx;
+    }
+    .value {
+      font-size: 29rpx;
     }
   }
 
   .detail-item:last-child {
-    .text {
+    .title {
       text-align: unset;
       text-justify: unset;
       /*ie6-8*/

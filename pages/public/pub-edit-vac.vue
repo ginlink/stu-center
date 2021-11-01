@@ -723,6 +723,8 @@ export default {
     .btn {
       position: absolute;
       bottom: 0;
+      bottom: constant(safe-area-inset-bottom);
+      bottom: env(safe-area-inset-bottom);
       left: 0;
       right: 0;
       font-size: 30rpx;
