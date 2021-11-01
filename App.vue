@@ -75,7 +75,8 @@ export default {
     },
     initCenterMenu() {
       this.$http
-        .get('/api/centermenu_v2')
+        // .get('/api/centermenu_v2')
+        .get('/api/centermenu_v2_backup')
         .then((res) => {
           const data = res.data.data ?? {}
 
