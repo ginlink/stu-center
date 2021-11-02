@@ -18,15 +18,17 @@ export const vac = {
 		sortVacList(vacation) {
 			// 根据时间排序
 			// 开始时间
-			vacation = this._.orderBy(vacation, (o) => {
-				let stand = this.$dayjs(o.detail.startTime, FORMATSECOND).unix()
-				return stand
-			}, 'desc')
+			vacation = vacation.sort((a, b) => {
+				let aTime = this.$dayjs(a.detail.startTime, FORMATSECOND).unix()
+				let bTime = this.$dayjs(b.detail.startTime, FORMATSECOND).unix()
+
+				return bTime - aTime
+			})
 			return vacation
 		},
 		saveLoacl() {
 			this.vacationDetail.data.list = this.sortVacList(this.vacationDetail.data.list)
-			
+
 			this.$log(this.vacationDetail.data.list, 'this.vacationDetail.data.list')
 
 			if (this.vacationDetail.data.list.length >= MAXLENGTH) {
@@ -79,7 +81,7 @@ export const toast = {
 			this.toast(msg, 'success', params, callback)
 		},
 		toast(msg, type, params, callback) {
-			this.$nextTick(function() {
+			this.$nextTick(function () {
 				this.$refs.uToast.show({
 					title: msg,
 					type,

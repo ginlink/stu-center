@@ -1,56 +1,89 @@
 {
-	"easycom": {
-		"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
-	},
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-		{
-			"path": "pages/console/console",
-			"style": {
-				"navigationBarTitleText": "操作台"
-			}
-		}, {
-			"path": "pages/stu/stu",
-			"style": {
-				"navigationBarTitleText": "学生中心"
-			}
-		},{
-			"path": "pages/console/download",
-			"style": {
-				"navigationBarTitleText": "下载"
-			}
-		},
-		/*************** 公共页 **********************/
-		{
-			"path": "pages/public/pub-edit-vac"
-		},
-		/*************** 公共页 **********************/
-		{
-			"path": "pages/vacation/vacation",
-			"style": {
-				"navigationBarTitleText": "我的假条"
-			}
-		}, {
-			"path": "pages/vacation/children/ApplyVacation",
-			"style": {
-				"navigationBarTitleText": "假条申请"
-			}
-		}, {
-			"path": "pages/vacation/children/VactionDetail",
-			"style": {
-				"navigationBarTitleText": "假条详情"
-			}
-		},{
-			"path": "pages/vacation/children/ReportBack",
-			"style": {
-				"navigationBarTitleText": "销假"
-			}
-		}
-	],
-	"globalStyle": {
-		"navigationStyle": "custom",
-		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "口袋模拟假条",
-		"navigationBarBackgroundColor": "#FFFFFF",
-		"backgroundColor": "#F5F5F5"
-	}
+  "easycom": {
+    "^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
+  },
+  "pages": [
+    {
+      "path": "pages/index",
+      "style": {
+        "navigationBarTitleText": "学生中心"
+      }
+    },
+    {
+      "path": "pages/console/console",
+      "style": {
+        "navigationBarTitleText": "操作台"
+      }
+    },
+    {
+      "path": "pages/notice/index",
+      "style": {
+        "navigationBarTitleText": "公告"
+      }
+    },
+    {
+      "path": "pages/notice/detail",
+      "style": {
+        "navigationBarTitleText": "公告"
+      }
+    },
+    {
+      "path": "pages/stu/stu",
+      "style": {
+        "navigationBarTitleText": "学生中心"
+      }
+    },
+    {
+      "path": "pages/console/download",
+      "style": {
+        "navigationBarTitleText": "下载"
+      }
+    },
+    {
+      "path": "pages/public/pub-edit-vac"
+    },
+    {
+      "path": "pages/vacation/vacation",
+      "style": {
+        "navigationBarTitleText": "我的假条"
+      }
+    },
+    {
+      "path": "pages/vacation/children/ApplyVacation",
+      "style": {
+        "navigationBarTitleText": "假条申请"
+      }
+    },
+    {
+      "path": "pages/vacation/children/VactionDetail",
+      "style": {
+        "navigationBarTitleText": "假条详情"
+      }
+    },
+    {
+      "path": "pages/vacation/children/ReportBack",
+      "style": {
+        "navigationBarTitleText": "销假"
+      }
+    },
+    {
+      "path": "pages/setting/index",
+      "style": {
+        "navigationBarTitleText": "设置"
+      }
+    },
+    {
+      "path": "pages/record/index",
+      "style": {
+        "navigationBarTitleText": "更新日志"
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationStyle": "custom",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "口袋模拟假条",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "backgroundColor": "#F5F5F5"
+  }
 }

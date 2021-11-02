@@ -17,11 +17,6 @@ filter-obj@^1.1.0:
   resolved "https://registry.nlark.com/filter-obj/download/filter-obj-1.1.0.tgz?cache=0&sync_timestamp=1630004180503&other_urls=https%3A%2F%2Fregistry.nlark.com%2Ffilter-obj%2Fdownload%2Ffilter-obj-1.1.0.tgz#9b311112bc6c6127a16e016c6c5d7f19e0805c5b"
   integrity sha1-mzERErxsYSehbgFsbF1/GeCAXFs=
 
-lodash@^4.17.21:
-  version "4.17.21"
-  resolved "https://registry.nlark.com/lodash/download/lodash-4.17.21.tgz?cache=0&sync_timestamp=1624543041613&other_urls=https%3A%2F%2Fregistry.nlark.com%2Flodash%2Fdownload%2Flodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
-  integrity sha1-Z5WRxWTDv/quhFTPCz3zcMPWkRw=
-
 query-string@^6.12.1:
   version "6.14.1"
   resolved "https://registry.nlark.com/query-string/download/query-string-6.14.1.tgz?cache=0&sync_timestamp=1624297034221&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fquery-string%2Fdownload%2Fquery-string-6.14.1.tgz#7ac2dca46da7f309449ba0f86b1fd28255b0c86a"

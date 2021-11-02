@@ -8,12 +8,9 @@ import Toast from './common/transfer/toast'
 import {
 	http
 } from '@/common/service/service.js'
-
+import { store } from '@/store/index.js'
 
 App.mpType = 'app'
-
-import Vuex from 'vuex' // 引入状态管理树
-Vue.use(Vuex)
 
 import uView from "uview-ui";
 Vue.use(uView);
@@ -21,12 +18,17 @@ Vue.use(uView);
 // request请求
 Vue.prototype.$http = http
 
+// store
+Vue.prototype.$store = store
+
 // 引入工具类
 import nh_utils from '@/common/utils/nh_utils.js'
 Vue.prototype.$utils = nh_utils
-// 引入lodash
-import _ from 'lodash'
-Vue.prototype._ = _
+
+// 引入lodash，lodash占用大概1M
+// import _ from 'lodash'
+// Vue.prototype._ = _
+
 // 引入dayjs
 import dayjs from 'dayjs'
 import customParseFormat from 'dayjs/plugin/customParseFormat';
@@ -59,7 +61,7 @@ Vue.prototype.$api = {
 // Vue.use(Toast)
 import Toasts from '@/components/common/toast'
 import toast from '@/common/transfer/toast.js'
-Vue.component('n-toast',Toasts)
+Vue.component('n-toast', Toasts)
 toast(Vue)
 
 // 挂载全局菜单

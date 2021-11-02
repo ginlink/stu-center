@@ -1,0 +1,10 @@
+{
+  "code": 1,
+  "data": {
+    "version": "1.2.4",
+    "contents": [
+      { "id": 1, "url": "/pages/notice/index", "text": "增加公告页面" },
+      { "id": 2, "url": "/pages/record/index", "text": "更新日志" }
+    ]
+  }
+}
