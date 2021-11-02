@@ -1,7 +1,7 @@
 <template>
   <view class="vac-footer">
-    <u-button class="button" :plain="true" :custom-style="customStyle" @click="$emit('action', 1)">续假</u-button>
-    <u-button class="button" type="primary" @click="$emit('action', 2)">销假</u-button>
+    <u-button class="button" :plain="true" :custom-style="customStyle" @click="$emit('action', 1)">我要续假</u-button>
+    <u-button class="button" type="primary" @click="$emit('action', 2)">我要销假</u-button>
   </view>
 </template>
 

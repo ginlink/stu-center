@@ -183,7 +183,7 @@ export default {
     noticeClick(index) {
       console.log('[](点击notice):', index)
       uni.navigateTo({
-        url: `/pages/console/notice?id=${index + 1}`,
+        url: `/pages/notice/detail?id=${index + 1}`,
       })
     },
     action(flag) {
